@@ -15,6 +15,16 @@ import sys
 # the first word in each filename.
 
 ################################################################################
+#
+# Given a root source directory, analyze filenames based on camel case and
+# return a list of lists, with each list element containing "similar" filenames 
+# grouped together
+#
+# root_dir - the root source directory to begin analysis
+#
+# RETURN: a list of lists, each list element containing similar filenames
+#
+################################################################################
 
 def analyze_source_tree(root_dir):
 	resultlist = []
@@ -30,8 +40,5 @@ def analyze_source_tree(root_dir):
 			currentmatch = firstword		
 		currentlist.append(file)
 	
-	print("Results:")
-	for sublist in resultlist:
-		print (sublist)
-
+	return resultlist
 
