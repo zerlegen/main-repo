@@ -16,20 +16,20 @@ import sys
 
 ################################################################################
 #
-# Given a root source directory, analyze filenames based on camel case and
+# Given a source directory, analyze filenames based on camel case and
 # return a list of lists, with each list element containing "similar" filenames 
 # grouped together
 #
-# root_dir - the root source directory to begin analysis
+# dir - the source directory to begin analysis
 #
 # RETURN: a list of lists, each list element containing similar filenames
 #
 ################################################################################
 
-def analyze_source_tree(root_dir):
+def analyze_source(dir):
 	resultlist = []
 	currentlist = []
-	filelist = os.listdir(root_dir)
+	filelist = os.listdir(dir)
 	firstwordpattern = re.compile('^[A-Z][a-z0-9]*')
 	currentmatch = ''
 	for file in filelist:

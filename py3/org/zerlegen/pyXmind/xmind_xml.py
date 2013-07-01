@@ -12,15 +12,15 @@ import sys
 # XML
 ###############################################################################
 
-def write_XMIND_HEADER(outFile, encoding="UTF-8"):
-	outFile.write("<?xml version=\"1.0\" encoding=\"" + encoding + 
-		      "\"standalone=\"no\"?>")
+def write_XMIND_HEADER(out_file, encoding="UTF-8"):
+	out_file.write("<?xml version=\"1.0\" encoding=\"" + encoding + 
+		      "\"" + " standalone=\"no\"?>")
 		     
-def write_XMIND_TITLE(outFile,  text):
-	outFile.write("<title>" + text + "</title>")
+def write_XMIND_TITLE(out_file,  text):
+	out_file.write("<title>" + text + "</title>")
 
-def write_XMIND_XMAP_CONTENT_OPEN(outFile, timestamp):
-	outFile.write(
+def write_XMIND_XMAP_CONTENT_OPEN(out_file, timestamp):
+	out_file.write(
 	"<xmap-content xmlns=\"urn:xmind:xmap:xmlns:content:2.0\" " +
 	"xmlns:fo=\"http://www.w3.org/1999/XSL/Format\" " + 
 	"xmlns:svg=\"http://www.w3.org/2000/svg\" " +
@@ -28,42 +28,42 @@ def write_XMIND_XMAP_CONTENT_OPEN(outFile, timestamp):
 	"xmlns:xlink=\"http://www.w3.org/1999/xlink\" " +
 	"timestamp=\"" + timestamp + "\" version=\"2.0\">")
 
-def write_XMIND_XMAP_CONTENT_CLOSE(outFile):
-	outFile.write("</xmap-content>")
+def write_XMIND_XMAP_CONTENT_CLOSE(out_file):
+	out_file.write("</xmap-content>")
 
-def write_XMIND_SHEET_OPEN(outFile, theme, timestamp):
-	outFile.write("<sheet id=\"5beq22t1dt6hg5qhtceovobls2\" theme=\"" + 
+def write_XMIND_SHEET_OPEN(out_file, theme, timestamp):
+	out_file.write("<sheet id=\"5beq22t1dt6hg5qhtceovobls2\" theme=\"" + 
 			theme + "\" timestamp=\"" + timestamp + "\">")
 
-def write_XMIND_SHEET_CLOSE(outFile):
-	outFile.write("</sheet>")
+def write_XMIND_SHEET_CLOSE(out_file):
+	out_file.write("</sheet>")
 
-def write_XMIND_TOPICS_OPEN(outFile):
-	outFile.write("<topics type=\"attached\">")
+def write_XMIND_TOPICS_OPEN(out_file):
+	out_file.write("<topics type=\"attached\">")
 
-def write_XMIND_TOPICS_CLOSE(outFile):
-	outFile.write("</topics>")
+def write_XMIND_TOPICS_CLOSE(out_file):
+	out_file.write("</topics>")
 
 
-def write_XMIND_TOPIC_OPEN(outFile, structure, timestamp):
-	outFile.write("<topic id=\"5jlu3jotvfr94mnaran8caioqv\"" + 
+def write_XMIND_TOPIC_OPEN(out_file, structure, timestamp):
+	out_file.write("<topic id=\"5jlu3jotvfr94mnaran8caioqv\"" + 
 		      " structure-class=\"" + structure + "\" timestamp=\"" + 
                       timestamp + "\">")
 
 # use to add child nodes - these don't take maps as structures
-def write_XMIND_TOPIC_OPEN(outFile, structure, timestamp):
-	outFile.write("<topic id=\"5jlu3jotvfr94mnaran8caioqv\"" + 
+def write_XMIND_TOPIC_OPEN(out_file, structure, timestamp):
+	out_file.write("<topic id=\"5jlu3jotvfr94mnaran8caioqv\"" + 
 		      " structure-class=\"" + structure + "\" timestamp=\"" + 
                       timestamp + "\">")
 
-def write_XMIND_TOPIC_CLOSE(outFile):
-	outFile.write("</topic>")
+def write_XMIND_TOPIC_CLOSE(out_file):
+	out_file.write("</topic>")
 
-def write_XMIND_CHILDREN_OPEN(outFile):
-	outFile.write("<children>")
+def write_XMIND_CHILDREN_OPEN(out_file):
+	out_file.write("<children>")
 
-def write_XMIND_CHILDREN_CLOSE(outFile):
-	outFile.write("</children>")
+def write_XMIND_CHILDREN_CLOSE(out_file):
+	out_file.write("</children>")
 
 def generate_xmind_timestamp():
 	return (str(int(time.time()) * 1000))
@@ -126,40 +126,40 @@ def generate_xmind_timestamp():
 #
 ###############################################################################
 
-def begin_map(outFile, theme):
-	write_XMIND_HEADER(outFile)
-	write_XMIND_XMAP_CONTENT_OPEN(outFile, generate_xmind_timestamp())
-	write_XMIND_SHEET_OPEN(outFile, theme, generate_xmind_timestamp())
+def begin_map(out_file, theme):
+	write_XMIND_HEADER(out_file)
+	write_XMIND_XMAP_CONTENT_OPEN(out_file, generate_xmind_timestamp())
+	write_XMIND_SHEET_OPEN(out_file, theme, generate_xmind_timestamp())
 
-def begin_root(outFile, structure, title):
-	write_XMIND_TOPIC_OPEN(outFile, structure, generate_xmind_timestamp())
-	write_XMIND_TITLE(outFile, title)
+def begin_root(out_file, structure, title):
+	write_XMIND_TOPIC_OPEN(out_file, structure, generate_xmind_timestamp())
+	write_XMIND_TITLE(out_file, title)
 
-def end_root(outFile):
-	write_XMIND_TOPIC_CLOSE(outFile)
+def end_root(out_file):
+	write_XMIND_TOPIC_CLOSE(out_file)
 
-def begin_children(outFile):
-	write_XMIND_CHILDREN_OPEN(outFile)
-	write_XMIND_TOPICS_OPEN(outFile)
+def begin_children(out_file):
+	write_XMIND_CHILDREN_OPEN(out_file)
+	write_XMIND_TOPICS_OPEN(out_file)
 
-def end_children(outFile):
-	write_XMIND_TOPICS_CLOSE(outFile)
-	write_XMIND_CHILDREN_CLOSE(outFile)
-
-
-def begin_node(outFile, structure, title):
-	write_XMIND_TOPIC_OPEN(outFile, structure, generate_xmind_timestamp())
-	write_XMIND_TITLE(outFile, title)
-
-def end_node(outFile):
-	write_XMIND_TOPIC_CLOSE(outFile)
+def end_children(out_file):
+	write_XMIND_TOPICS_CLOSE(out_file)
+	write_XMIND_CHILDREN_CLOSE(out_file)
 
 
-def end_map(outFile):
-	write_XMIND_TITLE(outFile, "Sheet 1")
-	write_XMIND_SHEET_CLOSE(outFile)
-	write_XMIND_XMAP_CONTENT_CLOSE(outFile)
-	outFile.close()
+def begin_node(out_file, structure, title):
+	write_XMIND_TOPIC_OPEN(out_file, structure, generate_xmind_timestamp())
+	write_XMIND_TITLE(out_file, title)
+
+def end_node(out_file):
+	write_XMIND_TOPIC_CLOSE(out_file)
+
+
+def end_map(out_file, sheet_name):
+	write_XMIND_TITLE(out_file, sheet_name)
+	write_XMIND_SHEET_CLOSE(out_file)
+	write_XMIND_XMAP_CONTENT_CLOSE(out_file)
+	out_file.close()
 
 ###############################################################################
 # Unit Tests:
@@ -170,41 +170,41 @@ def test_two_children_four_grandchildren():
 	XMIND_STRUCT_LOGIC_RIGHT = "org.xmind.ui.logic.right"
 	XMIND_STRUCT_MAP_CLOCKWISE = "org.xmind.ui.map.clockwise"
 
-	outFile = sys.stdout
-	begin_map(outFile, "brainy.defaultGenre.simple")
+	out_file = sys.stdout
+	begin_map(out_file, "brainy.defaultGenre.simple")
 
 	# root node
-	begin_root(outFile, XMIND_STRUCT_MAP_CLOCKWISE, "root node")
-	begin_children(outFile)
+	begin_root(out_file, XMIND_STRUCT_MAP_CLOCKWISE, "root node")
+	begin_children(out_file)
 	
 	# first child	
-	begin_node(outFile, XMIND_STRUCT_LOGIC_RIGHT, "child1")
+	begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "child1")
 
 	# 3 grandchildren off child 1
-	begin_children(outFile)
-	begin_node(outFile, XMIND_STRUCT_LOGIC_RIGHT, "grandchild")
-	end_node(outFile)
-	begin_node(outFile, XMIND_STRUCT_LOGIC_RIGHT, "grandchild2")
-	end_node(outFile)
-	begin_node(outFile, XMIND_STRUCT_LOGIC_RIGHT, "grandchild3")
-	end_node(outFile)
-	end_children(outFile)
-	end_node(outFile)
+	begin_children(out_file)
+	begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "grandchild")
+	end_node(out_file)
+	begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "grandchild2")
+	end_node(out_file)
+	begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "grandchild3")
+	end_node(out_file)
+	end_children(out_file)
+	end_node(out_file)
 
 	# second child	
-	begin_node(outFile, XMIND_STRUCT_LOGIC_RIGHT, "child2")
-	begin_children(outFile)
-	begin_node(outFile, XMIND_STRUCT_LOGIC_RIGHT, "grandchild4")
-	end_node(outFile)
-	end_children(outFile)
-	end_node(outFile)
-	end_children(outFile)
+	begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "child2")
+	begin_children(out_file)
+	begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "grandchild4")
+	end_node(out_file)
+	end_children(out_file)
+	end_node(out_file)
+	end_children(out_file)
 
 	# finish	
-	end_root(outFile)
-	end_map(outFile)
+	end_root(out_file)
+	end_map(out_file, "sheet 1")
 	
-	outFile.close()
+	out_file.close()
 
 
 ###############################################################################
