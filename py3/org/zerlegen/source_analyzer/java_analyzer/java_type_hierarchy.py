@@ -48,7 +48,7 @@ test_hier._add_type('fourteen', ['thirteen'])
 #pdb.set_trace() 
 while True:
     try:
-        print(test_hier._visit())
+        print(test_hier.next())
     except StopIteration:
         print("end of iteration")
         break

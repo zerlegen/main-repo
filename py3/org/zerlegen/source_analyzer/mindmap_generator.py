@@ -47,7 +47,7 @@ import org.zerlegen.pyXmind.xmind_xml
 #
 ################################################################################
 
-def map_dir(in_dir, is_root, out_map):
+def fn_map_dir(in_dir, is_root, out_map):
 
 	# Have directory analyzed
 	fn_analyzer = org.zerlegen.filename_analyzer.camelcase_analyzer
@@ -103,4 +103,4 @@ def map_dir(in_dir, is_root, out_map):
 		xmind_API.end_node(out_map)
 ################################################################################
 
-map_dir(sys.argv[1], True, open(sys.argv[2], 'w'))
+fn_map_dir(sys.argv[1], True, open(sys.argv[2], 'w'))

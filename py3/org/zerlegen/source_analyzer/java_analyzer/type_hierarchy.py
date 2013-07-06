@@ -41,19 +41,33 @@ class TypeHierarchy:
 
                     
     ####################################################################
+    #
+
     def __iter__(self):
        return self
 
 
     ####################################################################
-    def _visit(self):
+    # Traverses the type hierarchy.  On each call, returns a pair
+    # consisting of the current type, and the parent type, if there is
+    # one.
+    #  
+    
+    def next(self):
 
-#        if(self._current_node != None):
-#            (name, children) = self._type_list[self._current_node]
-#            print("current node: " + str(name))
-#        else:
-#            print("current node: none")
-#        print("stack: " + str(self._traverse_stack))
+        def push(type):
+            self._traverse_stack.insert(0, type)
+
+        def pop():
+            return self._traverse_stack.pop(0)
+
+        def get_current_name():
+            (name, children) = self._type_list[self._current_node]
+            return name
+
+        def get_current_children():
+            (name, children) = self._type_list[self._current_node]
+            return children
 
 
         if self._current_node == None:
@@ -63,39 +77,35 @@ class TypeHierarchy:
             else:
                 # Start a new tree
                 self._current_node = self._roots.pop()
-                (name, children) = self._type_list[self._current_node]
-                return name
+                return (get_current_name(), None)
         else:
-            (name, children) = self._type_list[self._current_node]
+            children = get_current_children()
             if len(children) > 0:
+                previous = get_current_name()
                 child = children.pop()
-                self._traverse_stack.insert(0, self._current_node)
+                push(self._current_node)
                 self._current_node = hash(child)
-                (name, children) = self._type_list[self._current_node]
-                return name
+                return (get_current_name(), previous)
             else:
                 while self._current_node != None:
                     if len(self._traverse_stack) > 0:
-                        self._current_node = self._traverse_stack.pop(0)
-                        (name, children) = self._type_list[self._current_node]
+                        self._current_node = pop()
+                        children = get_current_children()
                         if len(children) > 0:
+                            previous = get_current_name()
                             child = children.pop()
-                            self._traverse_stack.insert(0, self._current_node)
+                            push(self._current_node)
                             self._current_node = hash(child)
-                            (name, children) = self._type_list[self._current_node]
-                            return name
+                            return (get_current_name(), previous)
                         else:
+                            # no more children for this parent, 
+                            # keep going up
                             continue
                     else: 
                         self._current_node = None
-                return self._visit()
-
-
-    ####################################################################
-    def next(self):
-        return self._visit() 
-        
-    
+                return self.next()
+   
+ 
     ####################################################################
     # Adds a type name to the hierarchy.
     # 
@@ -104,11 +114,14 @@ class TypeHierarchy:
 
     def _add_type(self, type_name, parents):
 
+        def _add_type_name(id, name, children):
+            self._type_list[id] = (name, children)
+
         # Add type if not already existing 
         name_id = hash(type_name)
 
         if (name_id in self._type_list) == False:
-            self._type_list[name_id] = (type_name, [])
+            _add_type_name(name_id, type_name, [])
             if len(parents) == 0:
                 self._roots.append(name_id)
 
@@ -117,26 +130,24 @@ class TypeHierarchy:
             # Add parent if not already existing,
             # then add type as child of this parent
             if (parent_id in self._type_list) == False:
-                self._type_list[parent_id] = (parent, [type_name])
+                _add_type_name(parent_id, parent, [type_name])
             else:
                 (pname, pchildren) = self._type_list[parent_id]
                 pchildren.append(type_name)
-                self._type_list[parent_id] = (pname, pchildren) 
+                _add_type_name(parent_id, pname, pchildren)
          
-  
+ 
+ 
+    ####################################################################
+    #
+
     def _print(self):
         print(self._type_list)
         print(self._roots)
         
 
-    def next(self):
-        pass       
- 
-    def root(self):
-        pass
-
-    def children_of(self, parent):
-        pass
+    ####################################################################
+    #
 
     def add_file(self, filename):
         raise NotImplemented ("Implemented by language-specific subclass!")
