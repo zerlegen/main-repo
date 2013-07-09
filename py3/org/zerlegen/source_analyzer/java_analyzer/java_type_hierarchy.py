@@ -1,9 +1,15 @@
 #!/usr/bin/python3
 
-import type_hierarchy
+
+import org.zerlegen.source_analyzer.type_hierarchy as type_hierarchy
+from type_hierarchy import TypeHierarchy as TypeHierarchy
+
+import org.zerlegen.source_analyzer.java_analyzer
+
+#import org.zerlegen.source_analyzer.type_hierarchy.TypeHierarchy
 import pdb
 
-class JavaTypeHierarchy (type_hierarchy.TypeHierarchy):
+class JavaTypeHierarchy (TypeHierarchy):
 
     def add_file(self, filename):
        pass
@@ -30,9 +36,12 @@ class JavaTypeHierarchy (type_hierarchy.TypeHierarchy):
 test_hier = JavaTypeHierarchy('/home/epom/test-repo/portecle/src/main', '^\S+\.java')
 test_hier._add_type('one', []) 
 test_hier._add_type('two', ['one'])
+
 test_hier._add_type('five', ['one'])
 test_hier._add_type('six', ['one'])
+
 test_hier._add_type('three', ['two'])
+
 test_hier._add_type('four', ['two'])  
 
 test_hier._add_type('seven', [])
@@ -46,11 +55,11 @@ test_hier._add_type('fourteen', ['thirteen'])
 
 
 #pdb.set_trace() 
-while True:
-    try:
-        print(test_hier.next())
-    except StopIteration:
-        print("end of iteration")
-        break
+#while True:
+#    try:
+#        print(test_hier.next())
+#    except StopIteration:
+#        print("end of iteration")
+#        break
 #test_hier._print() 
    
