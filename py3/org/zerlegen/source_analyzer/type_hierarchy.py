@@ -137,6 +137,7 @@ class TypeHierarchy:
 
     def _add_type(self, type_name, parents):
 
+        print("len parents: " + str(len(parents)))
         def _add_type_name(id, name, children):
             self._type_list[id] = (name, children)
 
@@ -146,6 +147,7 @@ class TypeHierarchy:
         if (name_id in self._type_list) == False:
             _add_type_name(name_id, type_name, [])
             if len(parents) == 0:
+                print("adding root: " + type_name)
                 self._roots.append(name_id)
 
         for parent in parents:

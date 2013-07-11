@@ -38,7 +38,8 @@ import org.zerlegen.pyXmind.xmind_xml
 
 def map_java_dir(in_dir, out_map_name):
     out_map = open(out_map_name, 'w')
-    test_hier = JavaTypeHierarchy(in_dir, '^\S+\.java')
+    test_hier = JavaTypeHierarchy(in_dir)
+    print("roots: " + str(test_hier._roots))
 
     # start mind map
     #
