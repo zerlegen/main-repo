@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 
 ################################################################################
-# Representation of a type hierarchy.  Given a source tree, files are
+# Representation of a type hierarchy.  Given a root directory of a source file 
+# tree, files are
 # parsed to determine class and parent class names.  The class names are then
-# populated into a series of trees. 
+# populated into a series of trees based on class inheritence.
 #
 # The root node of each tree has either a top-level class or a class that 
 # descends from a 3rd party library. Subclasses are then added as child nodes.
@@ -19,7 +20,6 @@ class TypeHierarchy:
   
     _type_list = {}
     _roots = []
-    _traversing = 0
     _traverse_stack = []
     _current_node = None
         

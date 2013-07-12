@@ -6,14 +6,14 @@ import os
 import sys
 
 ################################################################################
-
+#
 # Analyzes a source tree for filenames in "camel case"  (that is, each word
 # is capitalized with no characters between each word),
 # then places each file with similar patterns into common lists
 # 
 # Since the list of filenames are initially sorted, it is enough to compare
 # the first word in each filename.
-
+#
 ################################################################################
 #
 # Given a source directory, analyze filenames based on camel case and
