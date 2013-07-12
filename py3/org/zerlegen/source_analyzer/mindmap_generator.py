@@ -36,9 +36,16 @@ import org.zerlegen.pyXmind.xmind_xml
 # end_map(outFile)
 #
 
-def map_java_dir(in_dir, out_map_name):
+################################################################################
+# src_dir - source root directory
+# dep_dir - dependency root directory
+# out_map_name - output mindmap filename
+#
+#
+
+def map_java_dir(src_dir, dep_dir, out_map_name):
     out_map = open(out_map_name, 'w')
-    test_hier = JavaTypeHierarchy(in_dir)
+    test_hier = JavaTypeHierarchy(src_dir, dep_dir)
     print("roots: " + str(test_hier._roots))
 
     # start mind map
@@ -55,7 +62,7 @@ def map_java_dir(in_dir, out_map_name):
     # start mind map
     xmind_API = org.zerlegen.pyXmind.xmind_xml
     xmind_API.begin_map(out_map, "brainy.defaultGenre.simple")
-    xmind_API.begin_root(out_map, "org.xmind.ui.org-chart.down", in_dir)
+    xmind_API.begin_root(out_map, "org.xmind.ui.org-chart.down", src_dir)
     xmind_API.begin_children(out_map)
 
     def traverse(node_id):
@@ -95,29 +102,29 @@ def map_java_dir(in_dir, out_map_name):
 # the specified directory.  It is left to the caller to make repeated calls for
 # subdirs.
 #
-# in_dir: directory whose files to analyze
+# src_dir: directory whose files to analyze
 # is_root: specifies whether we're mapping the root directory of the tree
 # 	   (requires separate pyXMind calls)
 # 
 #
 ################################################################################
 
-def fn_map_dir(in_dir, is_root, out_map):
+def fn_map_dir(src_dir, is_root, out_map):
 
 	# Have directory analyzed
 	#fn_analyzer = org.zerlegen.filename_analyzer.camelcase_analyzer
-	result_list = camelcase_analyzer.analyze_source(in_dir)
+	result_list = camelcase_analyzer.analyze_source(src_dir)
 	
 	# Generate the mind map:
 	xmind_API = org.zerlegen.pyXmind.xmind_xml
 	
 	if (is_root):
 		xmind_API.begin_map(out_map, "brainy.defaultGenre.simple")
-		xmind_API.begin_root(out_map, "org.xmind.ui.map.clockwise", in_dir)
+		xmind_API.begin_root(out_map, "org.xmind.ui.map.clockwise", src_dir)
 		print("Creating root node...")		
 	else:
 		xmind_API.begin_node(out_map, "org.xmind.ui.logic.right", 
-				     os.path.basename(in_dir))
+				     os.path.basename(src_dir))
 		print("Creating subdir node...")
 	foundresults = len(result_list) > 0
 
@@ -134,7 +141,7 @@ def fn_map_dir(in_dir, is_root, out_map):
 				for file in filegroup:
 			
 					# If this file is a dir, scan sub dirs
-					full_path = os.path.join(in_dir, file)
+					full_path = os.path.join(src_dir, file)
 
 					if os.path.isdir(full_path):
 						fn_map_dir(full_path, False, out_map)
@@ -159,6 +166,7 @@ def fn_map_dir(in_dir, is_root, out_map):
 ################################################################################
 
 map_java_dir('/home/epom/test-repo/portecle/src/main', 
+             '/cygdrive/c/Program Files (x86)/Java/jre6/lib',
              '/home/epom/test-repo/py3/org/zerlegen/pyXmind/build/content-in.xml')
 
 #fn_map_dir(sys.argv[1], True, open(sys.argv[2], 'w'))

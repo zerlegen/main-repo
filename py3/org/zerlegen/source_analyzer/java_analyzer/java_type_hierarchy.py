@@ -2,6 +2,7 @@
 
 import re
 import os
+import zipfile
 import org.zerlegen.source_analyzer.type_hierarchy as type_hierarchy
 from type_hierarchy import TypeHierarchy as TypeHierarchy
 import org.zerlegen.source_analyzer.java_analyzer
@@ -9,6 +10,35 @@ import org.zerlegen.source_analyzer.java_analyzer
 import pdb
 
 class JavaTypeHierarchy (TypeHierarchy):
+
+    _dependencies = []
+
+    def _load_jar_file(self, file):
+#        #class_name_patn = re.compile(
+        zf = zipfile.ZipFile(file, 'r')
+        try:
+            flist = zf.infolist()
+            for entry in flist:
+                fname = entry.filename
+                if fname.endswith('.class'):
+                    print('loading class file: ' + fname)
+        finally:
+            zf.close()
+
+                    
+
+    ########################################################################### 
+    # Loads type names from dependency jars in root_dir.  Dependency types that
+    # types in our source tree descend from will be treated as roots in our
+    # hierarchy.
+    #
+    def _load_dependency_types(self, root_dir):
+        for (dir, subs, files) in os.walk(root_dir):
+            for file in files:
+                print("checking dep file: " + file)
+                if file.endswith('.jar'):
+                    self._load_jar_file(os.path.join(dir, file))
+
 
     def _parse_java_file(self, filename):
         type_pat = re.compile(".*class (.+) ?")
@@ -32,12 +62,18 @@ class JavaTypeHierarchy (TypeHierarchy):
 
         return (type_name, parent_name)
 
-    def __init__(self, root_dir):
-        j_file_pat = re.compile(".+\.java$")
 
-        for (dir, subs, files) in os.walk(root_dir):
+    ########################################################################### 
+    # src_root - source tree root directory
+    # dep_root - dependency root directory
+    #
+
+    def __init__(self, src_root, dep_root):
+        self._load_dependency_types(dep_root)
+
+        for (dir, subs, files) in os.walk(src_root):
             for file in files:
-                if j_file_pat.search(file) != None:
+                if file.endswith('.java'):
                     print("Adding file: " + os.path.join(dir, file))
                     full_path = os.path.join(dir, file)
                     (type_name, parent_name) = self._parse_java_file(full_path) 

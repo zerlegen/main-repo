@@ -31,13 +31,14 @@ class TypeHierarchy:
     # file_filter - regex specifying source files to include 
     #
     
-    def __init__(self, root_dir, file_filter):
-        pattern = re.compile(file_filter)
-        for (current, subs, files) in os.walk(root_dir):
-            for file in files:
-                if re.search(pattern, file) != None:
-                    #print('matched: ' + file)
-                    self.add_file(file)
+    def __init__(self, src_root, dep_root):
+        pass
+#        pattern = re.compile(file_filter)
+#        for (current, subs, files) in os.walk(root_dir):
+#            for file in files:
+#                if re.search(pattern, file) != None:
+#                    #print('matched: ' + file)
+#                    self.add_file(file)
 
                     
     ####################################################################
@@ -161,7 +162,7 @@ class TypeHierarchy:
                 pchildren.append(name_id)
                 _add_type_name(parent_id, pname, pchildren)
          
- 
+    
  
     ####################################################################
     #
