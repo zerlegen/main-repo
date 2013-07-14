@@ -22,6 +22,7 @@ class TypeHierarchy:
     _roots = []
     _traverse_stack = []
     _current_node = None
+    _dependencies = []
         
  
     ####################################################################
@@ -52,13 +53,16 @@ class TypeHierarchy:
         return self._roots
 
     def get_node_name(self, node_id):
+#        print("node_id: " + str(node_id))
         (name, children) = self._type_list[node_id] 
         return name
 
-    def get_child_nodes(self, node_id):
+    def get_children(self, node_id):
         (name, children) = self._type_list[node_id] 
         return children
 
+    def _add_dependency(self, type_name):
+        self._dependencies.append(hash(type_name))
     
     ####################################################################
     # Traverses the type hierarchy.  On each call, returns a pair
@@ -131,24 +135,29 @@ class TypeHierarchy:
    
  
     ####################################################################
-    # Adds a type name to the hierarchy.
+    # Adds a type name to the hierarchy.  Does not add the type if the
+    # hash of this type already exists in the hierarchy.
     # 
     # name - name of the type to add
     # parents - list of parent class(es) this type descends from
 
     def _add_type(self, type_name, parents):
 
-        print("len parents: " + str(len(parents)))
-        def _add_type_name(id, name, children):
+        #print("len parents: " + str(len(parents)))
+        def _assign_type(id, name, children):
+            #print("adding type: " + name)
+            #if id in self._type_list:
+                #print("hash collision!")
             self._type_list[id] = (name, children)
 
         # Add type if not already existing 
         name_id = hash(type_name)
+            
 
         if (name_id in self._type_list) == False:
-            _add_type_name(name_id, type_name, [])
+            _assign_type(name_id, type_name, [])
             if len(parents) == 0:
-                print("adding root: " + type_name)
+                #print("adding root: " + type_name)
                 self._roots.append(name_id)
 
         for parent in parents:
@@ -156,12 +165,16 @@ class TypeHierarchy:
             # Add parent if not already existing,
             # then add type as child of this parent
             if (parent_id in self._type_list) == False:
-                _add_type_name(parent_id, parent, [type_name])
+                _assign_type(parent_id, parent, [name_id])
+                if (parent_id in self._dependencies):
+                #    print("adding root: " + parent)
+                    self._roots.append(parent_id)
             else:
                 (pname, pchildren) = self._type_list[parent_id]
                 pchildren.append(name_id)
-                _add_type_name(parent_id, pname, pchildren)
-         
+                _assign_type(parent_id, pname, pchildren)
+
+                     
     
  
     ####################################################################

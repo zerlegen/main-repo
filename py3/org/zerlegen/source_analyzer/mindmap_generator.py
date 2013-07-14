@@ -46,6 +46,7 @@ import org.zerlegen.pyXmind.xmind_xml
 def map_java_dir(src_dir, dep_dir, out_map_name):
     out_map = open(out_map_name, 'w')
     test_hier = JavaTypeHierarchy(src_dir, dep_dir)
+    print("type_list: " + str(test_hier._type_list))
     print("roots: " + str(test_hier._roots))
 
     # start mind map
@@ -62,28 +63,31 @@ def map_java_dir(src_dir, dep_dir, out_map_name):
     # start mind map
     xmind_API = org.zerlegen.pyXmind.xmind_xml
     xmind_API.begin_map(out_map, "brainy.defaultGenre.simple")
-    xmind_API.begin_root(out_map, "org.xmind.ui.org-chart.down", src_dir)
+    xmind_API.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
     xmind_API.begin_children(out_map)
 
     def traverse(node_id):
-        #print("node_id: " + str(node_id))
+        print("traverse node_id : " + str(node_id))
         name = test_hier.get_node_name(node_id)
-        print("begin node: " + name)
+#        print("begin node: " + name)
       
-        xmind_API.begin_node(out_map, "org.xmind.ui.org-chart.down", name)
-        children_ids = test_hier.get_child_nodes(node_id)
+        xmind_API.begin_node(out_map, "org.xmind.ui.logic.right", name)
+        children = test_hier.get_children(node_id)
+        
       
-        if len(children_ids) > 0:
+        if len(children) > 0:
             xmind_API.begin_children(out_map)
 
-        for child_id in children_ids:
-            traverse(child_id)
+        for child in children:
+            traverse(hash(child))
 
-        if len(children_ids) > 0:
+        if len(children) > 0:
             xmind_API.end_children(out_map)
 
         xmind_API.end_node(out_map)
-        print("end node: " + name)
+#        print("end node: " + name)
+
+    #print("roots: " + test_hier._roots)
 
     for root_id in test_hier.get_root_nodes():
         traverse(root_id)
@@ -120,16 +124,16 @@ def fn_map_dir(src_dir, is_root, out_map):
 	
 	if (is_root):
 		xmind_API.begin_map(out_map, "brainy.defaultGenre.simple")
-		xmind_API.begin_root(out_map, "org.xmind.ui.map.clockwise", src_dir)
-		print("Creating root node...")		
+		xmind_API.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
+#		print("Creating root node...")		
 	else:
 		xmind_API.begin_node(out_map, "org.xmind.ui.logic.right", 
 				     os.path.basename(src_dir))
-		print("Creating subdir node...")
+#		print("Creating subdir node...")
 	foundresults = len(result_list) > 0
 
 	if foundresults:
-		print ("found results")
+#		print ("found results")
 		xmind_API.begin_children(out_map)
 		index = 1
 		childstruct = "org.xmind.ui.map.logic.right"	
@@ -148,15 +152,15 @@ def fn_map_dir(src_dir, is_root, out_map):
 					else:
 						xmind_API.begin_node(out_map, 
 								     childstruct, file)
-						print("Creating leaf node: " + file)
+#						print("Creating leaf node: " + file)
 						xmind_API.end_node(out_map)
 	
 				xmind_API.end_children(out_map)
 				xmind_API.end_node(out_map)
 				index += 1
 		xmind_API.end_children(out_map)
-	else:
-		print ("no results")
+	#else:
+#		print ("no results")
 
 	if (is_root):
 		xmind_API.end_root(out_map)
@@ -165,7 +169,7 @@ def fn_map_dir(src_dir, is_root, out_map):
 		xmind_API.end_node(out_map)
 ################################################################################
 
-map_java_dir('/home/epom/test-repo/portecle/src/main', 
+map_java_dir('/home/epom/test-repo/portecle/src/main/net/sf/portecle/', 
              '/cygdrive/c/Program Files (x86)/Java/jre6/lib',
              '/home/epom/test-repo/py3/org/zerlegen/pyXmind/build/content-in.xml')
 
