@@ -22,23 +22,24 @@ import sys
 #
 # dir - the source directory to begin analysis
 #
-# RETURN: a list of lists, each list element containing similar filenames
+# RETURN: a list of lists, each list element containing a list of similar 
+# filenames
 #
 ################################################################################
 
 def analyze_source(dir):
-	resultlist = []
-	currentlist = []
-	filelist = os.listdir(dir)
-	firstwordpattern = re.compile('^[A-Z][a-z0-9]*')
-	currentmatch = ''
-	for file in filelist:
-		firstword = firstwordpattern.findall(file)
-		if firstword != currentmatch:
-			resultlist.append(currentlist)
-			currentlist = []
-			currentmatch = firstword		
-		currentlist.append(file)
+	result_list = []
+	current_list = []
+	file_list = os.listdir(dir)
+	first_word_pattern = re.compile('^[A-Z][a-z0-9]*')
+	current_match = ''
+	for file in file_list:
+		first_word = first_word_pattern.findall(file)
+		if first_word != current_match:
+			result_list.append(current_list)
+			current_list = []
+			current_match = first_word		
+		current_list.append(file)
 	
-	return resultlist
+	return result_list
 

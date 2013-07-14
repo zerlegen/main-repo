@@ -15,6 +15,8 @@ import org.zerlegen.source_analyzer.java_analyzer
 # parsed for class declarations.  We assume for now that a buffer of 5 lines
 # will 1) completely enclose a class declaration, and 2) contain only one
 # declaration
+#
+#
 
 class JavaTypeHierarchy (TypeHierarchy):
 
@@ -104,7 +106,9 @@ class JavaTypeHierarchy (TypeHierarchy):
             parent_name = None 
 
             buf = line_i + line_j + line_k + line_l + line_m
-            print("buf: " + buf)
+            #
+            #print("buf: " + buf)^
+            #
          
             if not buf:
                 # we've reached the end of the file 
@@ -115,12 +119,12 @@ class JavaTypeHierarchy (TypeHierarchy):
                 if class_pat.match(buf):
                     type_name = class_pat.search(buf).group(1)
                     #
-                    print("found class: " + type_name)
+                    #print("found class: " + type_name)
                     #
                     if parent_pat.match(buf):
                         parent_name = parent_pat.search(buf).group(1)
                         #
-                        print("found parent: " + parent_name)
+                        #print("found parent: " + parent_name)
                         #
                     if parent_name == None:
                         found.append((type_name, None))
@@ -129,37 +133,19 @@ class JavaTypeHierarchy (TypeHierarchy):
 
                     #we found a class declaration, advance 5 lines
                     line_i = fh.readline().rstrip()
-                    print("line_i: " + line_i)
                     line_j = fh.readline().rstrip()
-
-                    print("line_j: " + line_j)
                     line_k = fh.readline().rstrip()
-
-                    print("line_k: " + line_k)
                     line_l = fh.readline().rstrip()
-                
-                    print("line_l: " + line_l)
                     line_m = fh.readline().rstrip()
                     
-                    print("line_m: " + line_m)
                     continue
             
             # advance buffer by one line
             line_i = line_j
-
-            print("line_i: " + line_i)
             line_j = line_k
-
-            print("line_j: " + line_j)
             line_k = line_l
-
-            print("line_k: " + line_k)
             line_l = line_m
-
-            print("line_l: " + line_l)
             line_m = fh.readline().rstrip()    
-
-            print("line_m: " + line_m)
 
         return found
 
@@ -183,7 +169,6 @@ class JavaTypeHierarchy (TypeHierarchy):
                     if found == []:
                         # no classes in this file, skip for now
                         continue
-                    #
                                         #
                     else:
                         for (type_name, parent_name) in found:
@@ -200,50 +185,4 @@ class JavaTypeHierarchy (TypeHierarchy):
         
 
                         
-        #pdb.set_trace()
-#        self._add_type('', ['parent'])
-#        self._print()
-#        print('-------------')
-#        self._add_type('grandparent', []) 
-#        self._print()
-#        print('-------------')
-#        self._add_type('parent', ['grandparent'])
-#        self._print()
-#        print('-------------')
-#        self._add_type('grandchild', ['child'])
-#        self._print()
-#        print('-------------')
-#        self._add_type('child', ['base'])
-#        self._print()
-
-    #def test():
-#test_hier = JavaTypeHierarchy('/home/epom/test-repo/portecle/src/main', '^\S+\.java')
-#test_hier._add_type('one', []) 
-#test_hier._add_type('two', ['one'])
-#
-#test_hier._add_type('five', ['one'])
-#test_hier._add_type('six', ['one'])
-#
-#test_hier._add_type('three', ['two'])
-#
-#test_hier._add_type('four', ['two'])  
-#
-#test_hier._add_type('seven', [])
-#test_hier._add_type('eight', ['seven'])
-#test_hier._add_type('nine', ['seven'])
-#test_hier._add_type('ten', ['seven'])
-#test_hier._add_type('eleven', ['ten'])
-#test_hier._add_type('twelve', ['eleven'])
-#test_hier._add_type('thirteen', ['eleven'])
-#test_hier._add_type('fourteen', ['thirteen'])
-
-
-#pdb.set_trace() 
-#while True:
-#    try:
-#        print(test_hier.next())
-#    except StopIteration:
-#        print("end of iteration")
-#        break
-#test_hier._print() 
-   
+  
