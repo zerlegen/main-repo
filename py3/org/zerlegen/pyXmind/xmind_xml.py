@@ -10,6 +10,8 @@
 
 import time
 import sys
+import random
+import binascii
 
 ###############################################################################
 # low level write functions - write XML for each field to the passed output
@@ -35,8 +37,8 @@ def _write_XMIND_XMAP_CONTENT_OPEN(out_file, timestamp):
 def _write_XMIND_XMAP_CONTENT_CLOSE(out_file):
 	out_file.write("</xmap-content>")
 
-def _write_XMIND_SHEET_OPEN(out_file, theme, timestamp):
-	out_file.write("<sheet id=\"5beq22t1dt6hg5qhtceovobls2\" theme=\"" + 
+def _write_XMIND_SHEET_OPEN(out_file, theme, timestamp, sheet_id):
+	out_file.write("<sheet id=\"" + sheet_id + "\" theme=\"" + 
 			theme + "\" timestamp=\"" + timestamp + "\">")
 
 def _write_XMIND_SHEET_CLOSE(out_file):
@@ -49,10 +51,31 @@ def _write_XMIND_TOPICS_CLOSE(out_file):
 	out_file.write("</topics>")
 
 
-def _write_XMIND_TOPIC_OPEN(out_file, structure, timestamp):
-	out_file.write("<topic id=\"5jlu3jotvfr94mnaran8caioqv\"" + 
-		      " structure-class=\"" + structure + "\" timestamp=\"" + 
-                      timestamp + "\">")
+###############################################################################
+# Begin an XMind TOPIC XML object
+#
+# out_file: the output XML file
+# structure: string constant defining structure of the new node
+# timestamp: time stamp of the topic's creation
+# topic_id: unique 13 byte ID hex string identifying the topic
+# xlink_href: reference to an attachment for this topic, if there is one
+###############################################################################
+
+def _write_XMIND_TOPIC_OPEN(out_file, structure, timestamp, topic_id, xlink_href):
+    
+    xml_str = "<topic id=\"" + topic_id + "\"" 
+
+    if structure != None:
+        xml_str +=  " structure-class=\"" + structure + "\""   
+
+    xml_str += " timestamp=\"" + timestamp + "\""
+
+    if xlink_href != None:
+        xml_str += " xlink:href=\"xap:attachments/" + xlink_href + "\""
+
+    xml_str += ">"
+    out_file.write(xml_str)
+
 
 def _write_XMIND_TOPIC_CLOSE(out_file):
 	out_file.write("</topic>")
@@ -65,6 +88,10 @@ def _write_XMIND_CHILDREN_CLOSE(out_file):
 
 def _generate_xmind_timestamp():
 	return (str(int(time.time()) * 1000))
+
+def _generate_object_id():
+    # XMind ids are a 26-char hex string
+    return bytes.decode(binascii.hexlify(random._urandom(13)))
 
 
 ###############################################################################
@@ -127,10 +154,12 @@ def _generate_xmind_timestamp():
 def begin_map(out_file, theme):
 	_write_XMIND_HEADER(out_file)
 	_write_XMIND_XMAP_CONTENT_OPEN(out_file, _generate_xmind_timestamp())
-	_write_XMIND_SHEET_OPEN(out_file, theme, _generate_xmind_timestamp())
+	_write_XMIND_SHEET_OPEN(out_file, theme, _generate_xmind_timestamp(),
+                            _generate_object_id())
 
 def begin_root(out_file, structure, title):
-	_write_XMIND_TOPIC_OPEN(out_file, structure, _generate_xmind_timestamp())
+	_write_XMIND_TOPIC_OPEN(out_file, structure, _generate_xmind_timestamp(),
+                            _generate_object_id(), None)
 	_write_XMIND_TITLE(out_file, title)
 
 def end_root(out_file):
@@ -145,9 +174,11 @@ def end_children(out_file):
 	_write_XMIND_CHILDREN_CLOSE(out_file)
 
 
-def begin_node(out_file, structure, title):
-	_write_XMIND_TOPIC_OPEN(out_file, structure, _generate_xmind_timestamp())
+def begin_node(out_file, structure, title, attachment_fn=None):
+	_write_XMIND_TOPIC_OPEN(out_file, structure, _generate_xmind_timestamp(),
+                            _generate_object_id(), attachment_fn)
 	_write_XMIND_TITLE(out_file, title)
+
 
 def end_node(out_file):
 	_write_XMIND_TOPIC_CLOSE(out_file)
@@ -213,5 +244,38 @@ def test_two_children_four_grandchildren():
 
 
 ###############################################################################
+def test_attachments():
+    
 
+    XMIND_STRUCT_LOGIC_RIGHT = "org.xmind.ui.logic.right"
+    XMIND_STRUCT_MAP_CLOCKWISE = "org.xmind.ui.map.clockwise"
+    out_file = sys.stdout
+    begin_map(out_file, "brainy.defaultGenre.simple")
+    
+    # root node
+    begin_root(out_file, XMIND_STRUCT_MAP_CLOCKWISE, "root node")
+    begin_children(out_file)
+    
+    # first child	
+    begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "child1", "Guido.jpg")
+
+    #begin_node(out_file, XMIND_STRUCT_LOGIC_RIGHT, "child1")
+    end_node(out_file)
+    
+    
+    # finish	
+    end_children(out_file)
+    end_root(out_file)
+    end_map(out_file, "sheet 1")
+    
+    out_file.close()
+
+
+
+
+###############################################################################
+
+if __name__ == "__main__":
+    #test_two_children_four_grandchildren()
+    test_attachments()
 
