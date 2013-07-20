@@ -10,18 +10,17 @@ HOME_DIR="/home/epom/test-repo"
 PY_XMIND_HOME="$HOME_DIR/py3/org/zerlegen/pyXMind"
 
 cd $PY_XMIND_HOME/build
-unzip build.xmind.original 
+unzip template.xmind
 
 # replace tree content
 rm content.xml
 mv content-in.xml content.xml
-
-# add attachment content
-mkdir attachments
-cp Guido.jpg attachments
+rm META-INF/manifest.xml
+mv manifest-in.xml META-INF/manifest.xml
 
 # build xmind workbook
+
 zip build.xmind content.xml META-INF/* Thumbnails/* meta.xml Revisions/* attachments/*
 
 # cleanup
-rm -rf *.xml META-INF Thumbnails Revisions attachments
+#rm -rf *.xml META-INF Thumbnails Revisions attachments

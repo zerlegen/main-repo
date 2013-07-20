@@ -83,6 +83,9 @@ class JavaTypeHierarchy (TypeHierarchy):
     #
     
     def _parse_java_file(self, file_name):
+        #
+        print("parsing file: " + file_name)
+        #
         fh = open(file_name, "r")
         found = []
       
@@ -107,7 +110,7 @@ class JavaTypeHierarchy (TypeHierarchy):
 
             buf = line_i + line_j + line_k + line_l + line_m
             #
-            #print("buf: " + buf)^
+            print("buf: " + buf)
             #
          
             if not buf:

@@ -5,7 +5,7 @@ class XMindManifest:
     _file_entries = []
 
     MEDIA_TYPE_IMAGE = "image/png"
-    MEDIA_TYPE_XML = "text/xml"
+    MEDIA_TYPE_TEXT_XML = "text/xml"
     MEDIA_TYPE_NONE = ""
 
     def add_file_entry(self, full_path, media_type):

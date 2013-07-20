@@ -8,15 +8,18 @@
 # 
 ###############################################################################
 
-import time
 import sys
-import random
-import binascii
+import org.zerlegen.pyXmind.xmind_utils as xmind_utils
 
 ###############################################################################
 # low level write functions - write XML for each field to the passed output
 # file
 ###############################################################################
+
+XMIND_STRUCT_LOGIC_RIGHT = "org.xmind.ui.logic.right"
+XMIND_STRUCT_MAP_CLOCKWISE = "org.xmind.ui.map.clockwise"
+XMIND_THEME_SIMPLE = "brainy.defaultGenre.simple"
+
 
 def _write_XMIND_HEADER(out_file, encoding="UTF-8"):
 	out_file.write("<?xml version=\"1.0\" encoding=\"" + encoding + 
@@ -86,13 +89,6 @@ def _write_XMIND_CHILDREN_OPEN(out_file):
 def _write_XMIND_CHILDREN_CLOSE(out_file):
 	out_file.write("</children>")
 
-def _generate_xmind_timestamp():
-	return (str(int(time.time()) * 1000))
-
-def _generate_object_id():
-    # XMind ids are a 26-char hex string
-    return bytes.decode(binascii.hexlify(random._urandom(13)))
-
 
 ###############################################################################
 # High level methods:
@@ -153,13 +149,13 @@ def _generate_object_id():
 
 def begin_map(out_file, theme):
 	_write_XMIND_HEADER(out_file)
-	_write_XMIND_XMAP_CONTENT_OPEN(out_file, _generate_xmind_timestamp())
-	_write_XMIND_SHEET_OPEN(out_file, theme, _generate_xmind_timestamp(),
-                            _generate_object_id())
+	_write_XMIND_XMAP_CONTENT_OPEN(out_file, xmind_utils.generate_xmind_timestamp())
+	_write_XMIND_SHEET_OPEN(out_file, theme, xmind_utils.generate_xmind_timestamp(),
+                            xmind_utils.generate_object_id())
 
 def begin_root(out_file, structure, title):
-	_write_XMIND_TOPIC_OPEN(out_file, structure, _generate_xmind_timestamp(),
-                            _generate_object_id(), None)
+	_write_XMIND_TOPIC_OPEN(out_file, structure, xmind_utils.generate_xmind_timestamp(),
+                            xmind_utils.generate_object_id(), None)
 	_write_XMIND_TITLE(out_file, title)
 
 def end_root(out_file):
@@ -175,8 +171,8 @@ def end_children(out_file):
 
 
 def begin_node(out_file, structure, title, attachment_fn=None):
-	_write_XMIND_TOPIC_OPEN(out_file, structure, _generate_xmind_timestamp(),
-                            _generate_object_id(), attachment_fn)
+	_write_XMIND_TOPIC_OPEN(out_file, structure, xmind_utils.generate_xmind_timestamp(),
+                            xmind_utils.generate_object_id(), attachment_fn)
 	_write_XMIND_TITLE(out_file, title)
 
 
@@ -203,11 +199,8 @@ def end_map(out_file, sheet_name):
 
 def test_two_children_four_grandchildren():
 
-	XMIND_STRUCT_LOGIC_RIGHT = "org.xmind.ui.logic.right"
-	XMIND_STRUCT_MAP_CLOCKWISE = "org.xmind.ui.map.clockwise"
-
 	out_file = sys.stdout
-	begin_map(out_file, "brainy.defaultGenre.simple")
+	begin_map(out_file, XMIND_THEME_SIMPLE)
 
 	# root node
 	begin_root(out_file, XMIND_STRUCT_MAP_CLOCKWISE, "root node")
@@ -247,10 +240,8 @@ def test_two_children_four_grandchildren():
 def test_attachments():
     
 
-    XMIND_STRUCT_LOGIC_RIGHT = "org.xmind.ui.logic.right"
-    XMIND_STRUCT_MAP_CLOCKWISE = "org.xmind.ui.map.clockwise"
     out_file = sys.stdout
-    begin_map(out_file, "brainy.defaultGenre.simple")
+    begin_map(out_file, XMIND_THEME_SIMPLE)
     
     # root node
     begin_root(out_file, XMIND_STRUCT_MAP_CLOCKWISE, "root node")
@@ -276,6 +267,6 @@ def test_attachments():
 ###############################################################################
 
 if __name__ == "__main__":
-    #test_two_children_four_grandchildren()
-    test_attachments()
+    test_two_children_four_grandchildren()
+    #test_attachments()
 
