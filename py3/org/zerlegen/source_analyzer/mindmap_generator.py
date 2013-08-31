@@ -5,7 +5,7 @@ import os
 import java_analyzer.java_type_hierarchy
 from   java_analyzer.java_type_hierarchy import JavaTypeHierarchy
 import org.zerlegen.source_analyzer.filename_analyzer.camelcase_analyzer as camelcase_analyzer
-import org.zerlegen.pyXmind.xmind_xml
+import org.zerlegen.pyXmind.xmind_content
 
 ################################################################################
 #
@@ -46,10 +46,10 @@ def map_java_hierarchy(src_dir, dep_dir, out_map_name):
     #
     
     # start mind map
-    xmind_API = org.zerlegen.pyXmind.xmind_xml
-    xmind_API.begin_map(out_map, "brainy.defaultGenre.simple")
-    xmind_API.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
-    xmind_API.begin_children(out_map)
+    content = org.zerlegen.pyXmind.xmind_content
+    content.begin_map(out_map, "brainy.defaultGenre.simple")
+    content.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
+    content.begin_children(out_map)
 
     def traverse(node_id):
         #
@@ -60,20 +60,20 @@ def map_java_hierarchy(src_dir, dep_dir, out_map_name):
         #print("begin node: " + name)
         #
       
-        xmind_API.begin_node(out_map, "org.xmind.ui.logic.right", name)
+        content.begin_node(out_map, "org.xmind.ui.logic.right", name)
         children = test_hier.get_children(node_id)
         
       
         if len(children) > 0:
-            xmind_API.begin_children(out_map)
+            content.begin_children(out_map)
 
         for child in children:
             traverse(hash(child))
 
         if len(children) > 0:
-            xmind_API.end_children(out_map)
+            content.end_children(out_map)
 
-        xmind_API.end_node(out_map)
+        content.end_node(out_map)
         #
         # print("end node: " + name)
         #    
@@ -85,9 +85,9 @@ def map_java_hierarchy(src_dir, dep_dir, out_map_name):
     for root_id in test_hier.get_root_nodes():
         traverse(root_id)
 
-    xmind_API.end_children(out_map)
-    xmind_API.end_root(out_map)
-    xmind_API.end_map(out_map, "java_type_analysis")
+    content.end_children(out_map)
+    content.end_root(out_map)
+    content.end_map(out_map, "java_type_analysis")
     out_map.close()
 
 
@@ -111,16 +111,16 @@ def fn_map_dir(src_dir, is_root, out_map):
 	result_list = camelcase_analyzer.analyze_source(src_dir)
 	
 	# Generate the mind map:
-	xmind_API = org.zerlegen.pyXmind.xmind_xml
+	content = org.zerlegen.pyXmind.xmind_content
 	
 	if (is_root):
-		xmind_API.begin_map(out_map, "brainy.defaultGenre.simple")
-		xmind_API.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
+		content.begin_map(out_map, "brainy.defaultGenre.simple")
+		content.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
         #
         #print("Creating root node...")
         #		
 	else:
-		xmind_API.begin_node(out_map, "org.xmind.ui.logic.right", 
+		content.begin_node(out_map, "org.xmind.ui.logic.right", 
 				     os.path.basename(src_dir))
         #
 		# print("Creating subdir node...")
@@ -131,13 +131,13 @@ def fn_map_dir(src_dir, is_root, out_map):
         #
         #print ("found results")
         #
-		xmind_API.begin_children(out_map)
+		content.begin_children(out_map)
 		index = 1
 		childstruct = "org.xmind.ui.map.logic.right"	
 		for filegroup in result_list:
 			if len(filegroup) > 0:
-				xmind_API.begin_node(out_map, childstruct, str(index))
-				xmind_API.begin_children(out_map)
+				content.begin_node(out_map, childstruct, str(index))
+				content.begin_children(out_map)
 	
 				for file in filegroup:
 			
@@ -147,26 +147,26 @@ def fn_map_dir(src_dir, is_root, out_map):
 					if os.path.isdir(full_path):
 						fn_map_dir(full_path, False, out_map)
 					else:
-						xmind_API.begin_node(out_map, 
+						content.begin_node(out_map, 
 								     childstruct, file)
                         #
                         #print("Creating leaf node: " + file)
                         #
-						xmind_API.end_node(out_map)
+						content.end_node(out_map)
 	
-				xmind_API.end_children(out_map)
-				xmind_API.end_node(out_map)
+				content.end_children(out_map)
+				content.end_node(out_map)
 				index += 1
-		xmind_API.end_children(out_map)
+		content.end_children(out_map)
     #
 	#else:
     #    print ("no results")
 
 	if (is_root):
-		xmind_API.end_root(out_map)
-		xmind_API.end_map(out_map, "filename_analysis")
+		content.end_root(out_map)
+		content.end_map(out_map, "filename_analysis")
 	else:
-		xmind_API.end_node(out_map)
+		content.end_node(out_map)
 ################################################################################
 
 map_java_hierarchy(sys.argv[1], sys.argv[2], sys.argv[3])

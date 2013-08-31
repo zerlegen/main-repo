@@ -74,7 +74,7 @@ class XMindMindmapBuilder:
 
 def testChild():
     meta_path = "/home/epom/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
-    mmBuilder = XMindMindmapBuilder("test_child", meta_path)
+    mmBuilder = XMindMindmapBuilder("test_child", "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
     mmBuilder.begin_node("org.xmind.ui.map.clockwise", "child")
     mmBuilder.end_node()
@@ -84,7 +84,7 @@ def testChild():
 
 def testGrandChild():
     meta_path = "/home/epom/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
-    mmBuilder = XMindMindmapBuilder("test_grandchild", meta_path)
+    mmBuilder = XMindMindmapBuilder("test_grandchild", "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
     mmBuilder.begin_node("org.xmind.ui.map.clockwise", "child")
     mmBuilder.begin_children()
@@ -99,7 +99,7 @@ def testGrandChild():
 
 def testAttachment():
     meta_path = "/home/epom/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
-    mmBuilder = XMindMindmapBuilder("test_attachment", meta_path)
+    mmBuilder = XMindMindmapBuilder("test_attachment", "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
     mmBuilder.begin_node("org.xmind.ui.map.clockwise", "child",
                          os.path.join(os.getcwd(), "build", "Guido.jpg"))
