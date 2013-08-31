@@ -5,7 +5,7 @@ import os
 import java_analyzer.java_type_hierarchy
 from   java_analyzer.java_type_hierarchy import JavaTypeHierarchy
 import org.zerlegen.source_analyzer.filename_analyzer.camelcase_analyzer as camelcase_analyzer
-import org.zerlegen.pyXmind.xmind_content
+from org.zerlegen.pyXmind.xmind_mindmap_builder import XMindMindmapBuilder as XMindMindmapBuilder
 
 ################################################################################
 #
@@ -37,19 +37,13 @@ import org.zerlegen.pyXmind.xmind_content
 #
 #
 
-def map_java_hierarchy(src_dir, dep_dir, out_map_name):
-    out_map = open(out_map_name, 'w')
-    test_hier = JavaTypeHierarchy(src_dir, dep_dir)
-    #
-    #print("type_list: " + str(test_hier._type_list))
-    #print("roots: " + str(test_hier._roots))
-    #
-    
-    # start mind map
-    content = org.zerlegen.pyXmind.xmind_content
-    content.begin_map(out_map, "brainy.defaultGenre.simple")
-    content.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
-    content.begin_children(out_map)
+def map_java_hierarchy(top_src_dir, dep_dir, out_map_name):
+
+    meta_path = "/home/epom/github/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
+    mmBuilder = XMindMindmapBuilder(top_src_dir, "org.xmind.ui.logic.right", meta_path)
+    mmBuilder.begin_children()
+
+    test_hier = JavaTypeHierarchy(top_src_dir, dep_dir)
 
     def traverse(node_id):
         #
@@ -60,35 +54,81 @@ def map_java_hierarchy(src_dir, dep_dir, out_map_name):
         #print("begin node: " + name)
         #
       
-        content.begin_node(out_map, "org.xmind.ui.logic.right", name)
+        mmBuilder.begin_node("org.xmind.ui.logic.right", name)
         children = test_hier.get_children(node_id)
         
       
         if len(children) > 0:
-            content.begin_children(out_map)
+            mmBuilder.begin_children()
 
         for child in children:
             traverse(hash(child))
 
         if len(children) > 0:
-            content.end_children(out_map)
+            mmBuilder.end_children()
 
-        content.end_node(out_map)
-        #
-        # print("end node: " + name)
-        #    
-
-    #
-    #print("roots: " + test_hier._roots)
-    #
-
+        mmBuilder.end_node()
+     
     for root_id in test_hier.get_root_nodes():
         traverse(root_id)
 
-    content.end_children(out_map)
-    content.end_root(out_map)
-    content.end_map(out_map, "java_type_analysis")
-    out_map.close()
+    mmBuilder.end_children()
+    mmBuilder.close_map()
+    mmBuilder.build_workbook(out_map_name)
+
+
+#def map_java_hierarchy(src_dir, dep_dir, out_map_name):
+#    out_map = open(out_map_name, 'w')
+#    test_hier = JavaTypeHierarchy(src_dir, dep_dir)
+#    #
+#    #print("type_list: " + str(test_hier._type_list))
+#    #print("roots: " + str(test_hier._roots))
+#    #
+#    
+#    # start mind map
+#    content = org.zerlegen.pyXmind.xmind_content
+#    content.begin_map(out_map, "brainy.defaultGenre.simple")
+#    content.begin_root(out_map, "org.xmind.ui.logic.right", src_dir)
+#    content.begin_children(out_map)
+#
+#    def traverse(node_id):
+#        #
+#        #print("traverse node_id : " + str(node_id))
+#        #
+#        name = test_hier.get_node_name(node_id)
+#        #
+#        #print("begin node: " + name)
+#        #
+#      
+#        content.begin_node(out_map, "org.xmind.ui.logic.right", name)
+#        children = test_hier.get_children(node_id)
+#        
+#      
+#        if len(children) > 0:
+#            content.begin_children(out_map)
+#
+#        for child in children:
+#            traverse(hash(child))
+#
+#        if len(children) > 0:
+#            content.end_children(out_map)
+#
+#        content.end_node(out_map)
+#        #
+#        # print("end node: " + name)
+#        #    
+#
+#    #
+#    #print("roots: " + test_hier._roots)
+#    #
+#
+#    for root_id in test_hier.get_root_nodes():
+#        traverse(root_id)
+#
+#    content.end_children(out_map)
+#    content.end_root(out_map)
+#    content.end_map(out_map, "java_type_analysis")
+#    out_map.close()
 
 
 

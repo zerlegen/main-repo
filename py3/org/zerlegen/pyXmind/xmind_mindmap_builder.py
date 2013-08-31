@@ -73,7 +73,7 @@ class XMindMindmapBuilder:
 ################################################################################
 
 def testChild():
-    meta_path = "/home/epom/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
+    meta_path = "/home/epom/github/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
     mmBuilder = XMindMindmapBuilder("test_child", "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
     mmBuilder.begin_node("org.xmind.ui.map.clockwise", "child")
@@ -83,7 +83,7 @@ def testChild():
     mmBuilder.build_workbook("test-child.xmind")
 
 def testGrandChild():
-    meta_path = "/home/epom/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
+    meta_path = "/home/epom/github/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
     mmBuilder = XMindMindmapBuilder("test_grandchild", "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
     mmBuilder.begin_node("org.xmind.ui.map.clockwise", "child")
@@ -98,7 +98,7 @@ def testGrandChild():
 
 
 def testAttachment():
-    meta_path = "/home/epom/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
+    meta_path = "/home/epom/github/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
     mmBuilder = XMindMindmapBuilder("test_attachment", "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
     mmBuilder.begin_node("org.xmind.ui.map.clockwise", "child",
