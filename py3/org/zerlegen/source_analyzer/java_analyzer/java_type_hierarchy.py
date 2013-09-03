@@ -31,6 +31,7 @@ class JavaTypeHierarchy (TypeHierarchy):
     #
 
     def _load_jar_file(self, jar_file):
+        print("loading jar file: " + jar_file)
         class_name_patn = re.compile("/([^\s/]+).class$")
         zf = zipfile.ZipFile(jar_file, 'r')
         try:
@@ -39,10 +40,12 @@ class JavaTypeHierarchy (TypeHierarchy):
                 fname = entry.filename
                 if fname.endswith('.class'):
                     #
-                    #print('loading class file: ' + fname)
+                    print('loading class file: ' + fname)
                     #
-                    class_name = class_name_patn.search(fname).group(1)
-                    self._add_dependency(class_name)
+                    searchobj = class_name_patn.search(fname)
+                    if (searchobj != None):
+                        class_name = searchobj.group(1)
+                        self._add_dependency(class_name)
                     #
                     #print("class name: " + class_name)
                     #
@@ -84,14 +87,14 @@ class JavaTypeHierarchy (TypeHierarchy):
     
     def _parse_java_file(self, file_name):
         #
-        print("parsing file: " + file_name)
+        #print("parsing file: " + file_name)
         #
         fh = open(file_name, "r")
         found = []
       
         open_brace = re.compile(".*{")
         class_pat = re.compile(".*class\s+(\w+).*\{")
-        parent_pat = re.compile(".*extends\s+(\w+)(\s+)?\{")
+        parent_pat = re.compile(".*extends\s+(\w+)(\s+)?\{?")
  
         # scan a buffer of 5 lines for a class declaration
         # we assume a class declaration (from "class" to "{")
@@ -110,7 +113,7 @@ class JavaTypeHierarchy (TypeHierarchy):
 
             buf = line_i + line_j + line_k + line_l + line_m
             #
-            print("buf: " + buf)
+            #print("buf: " + buf)
             #
          
             if not buf:
@@ -122,12 +125,12 @@ class JavaTypeHierarchy (TypeHierarchy):
                 if class_pat.match(buf):
                     type_name = class_pat.search(buf).group(1)
                     #
-                    #print("found class: " + type_name)
+                    print("found class: " + type_name)
                     #
                     if parent_pat.match(buf):
                         parent_name = parent_pat.search(buf).group(1)
                         #
-                        #print("found parent: " + parent_name)
+                        print("found parent: " + parent_name)
                         #
                     if parent_name == None:
                         found.append((type_name, None))
@@ -175,8 +178,8 @@ class JavaTypeHierarchy (TypeHierarchy):
                                         #
                     else:
                         for (type_name, parent_name) in found:
-                            print("got type: " + type_name)
-                            print("got parent: " + str(parent_name))
+                            #print("got type: " + type_name)
+                            #print("got parent: " + str(parent_name))
 
                             if parent_name == None:
                                 self._add_type(type_name, [])
