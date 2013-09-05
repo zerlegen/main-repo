@@ -87,14 +87,14 @@ class JavaTypeHierarchy (TypeHierarchy):
     
     def _parse_java_file(self, file_name):
         #
-        #print("parsing file: " + file_name)
+        print("parsing file: " + file_name)
         #
         fh = open(file_name, "r")
         found = []
       
         open_brace = re.compile(".*{")
-        class_pat = re.compile(".*class\s+(\w+).*\{")
-        parent_pat = re.compile(".*extends\s+(\w+)(\s+)?\{?")
+        class_pat = re.compile(".*class\s+([\w\$]+).*\{")
+        parent_pat = re.compile(".*extends\s+([\w\$]+)(\s+)?\{?")
  
         # scan a buffer of 5 lines for a class declaration
         # we assume a class declaration (from "class" to "{")
@@ -113,7 +113,7 @@ class JavaTypeHierarchy (TypeHierarchy):
 
             buf = line_i + line_j + line_k + line_l + line_m
             #
-            #print("buf: " + buf)
+            print("buf: " + buf)
             #
          
             if not buf:
