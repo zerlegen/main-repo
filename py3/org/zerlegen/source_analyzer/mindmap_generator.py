@@ -39,11 +39,16 @@ from org.zerlegen.pyXmind.xmind_mindmap_builder import XMindMindmapBuilder as XM
 
 def map_java_hierarchy(top_src_dir, dep_dir, out_map_name):
 
-    meta_path = "/home/epom/github/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
+    meta_path = "/home/epomerleau/github/test-repo/py3/org/zerlegen/pyXmind/test-in/meta.xml"
     mmBuilder = XMindMindmapBuilder(top_src_dir, "org.xmind.ui.logic.right", meta_path)
     mmBuilder.begin_children()
 
     test_hier = JavaTypeHierarchy(top_src_dir, dep_dir)
+
+    print("type list:" + str(test_hier._type_list))
+    print("Roots: " + str(test_hier._roots))
+    print("Deps: " + str(test_hier._dependencies)) 
+      
 
     def traverse(node_id):
         #
@@ -51,13 +56,16 @@ def map_java_hierarchy(top_src_dir, dep_dir, out_map_name):
         #
         name = test_hier.get_node_name(node_id)
         #
-        #print("begin node: " + name)
+        print("begin node: " + name)
         #
       
         mmBuilder.begin_node("org.xmind.ui.logic.right", name)
         children = test_hier.get_children(node_id)
-        
-      
+
+        #
+        #print("Found " + str(len(children)) + " children")
+        #
+
         if len(children) > 0:
             mmBuilder.begin_children()
 
@@ -70,6 +78,9 @@ def map_java_hierarchy(top_src_dir, dep_dir, out_map_name):
         mmBuilder.end_node()
      
     for root_id in test_hier.get_root_nodes():
+        #
+        #print("traversing root node_id: " + str(root_id))
+        #
         traverse(root_id)
 
     mmBuilder.end_children()

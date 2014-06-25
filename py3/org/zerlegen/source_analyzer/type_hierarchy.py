@@ -135,7 +135,7 @@ class TypeHierarchy:
             _assign_type(name_id, type_name, [])
             if len(parents) == 0:
                 #
-                #print("adding root: " + type_name)
+                #print("adding type " + type_name + " as root: " + str(name_id))
                 #    
                 self._roots.append(name_id)
 
@@ -147,11 +147,14 @@ class TypeHierarchy:
                 _assign_type(parent_id, parent, [name_id])
                 if (parent_id in self._dependencies):
                 #
-                #    print("adding root: " + parent)
+                #   print("adding parent as root: " + parent)
                 #
                     self._roots.append(parent_id)
             else:
                 (pname, pchildren) = self._type_list[parent_id]
+                # 
+                #print("adding type " + type_name + " as child of parent: " + pname)
+                #
                 pchildren.append(name_id)
                 _assign_type(parent_id, pname, pchildren)
     

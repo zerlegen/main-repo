@@ -6,10 +6,11 @@
 #   $PY_XMIND_HOME/build
 #
 
-HOME_DIR="/home/epom/test-repo"
+HOME_DIR="/cygdrive/c/shared/github/test-repo"
 PY_XMIND_HOME="$HOME_DIR/py3/org/zerlegen/pyXMind"
 
 cd $PY_XMIND_HOME/build
+cp build.xmind.original template.xmind
 unzip template.xmind
 
 # replace tree content
