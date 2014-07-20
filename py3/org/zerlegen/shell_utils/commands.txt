@@ -1,2 +1,6 @@
-bash list-files ls -al -R sys.argv[1]
-bash cpu-info cat /proc/cpuinfo
+# shortcut naming convention - verb describing action taking place -> specifics of action ->
+# object being acted upon -> specifics of object
+
+bash list-files ls -al 
+bash show-cpu-info cat /proc/cpuinfo
+bash show-decoded-certificate-pem openssl x509 -inform PEM -in sys.argv[1] -noout -text

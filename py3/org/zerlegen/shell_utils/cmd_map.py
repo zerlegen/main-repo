@@ -1,5 +1,8 @@
 #!python3
 
+import os
+import stat
+
 class command_mappings:
 
 ################################################################################ 
@@ -19,13 +22,15 @@ class command_mappings:
     for i in range(len(self._cmd_strs)):
       cmd = self._cmd_strs[i]
       alias = self._aliases[i]
-      with open("./shortcuts/" + alias + ".py", "w") as out_file:
+      out_path = "./shortcuts/" + alias + ".py"
+      with open(out_path, "w") as out_file:
         out_file.write("#!python3\n")
         out_file.write("\n")
         out_file.write("import cmd_utils\n")
         out_file.write("import sys\n")
         out_file.write("\n")
         out_file.write("eval(\"" + "cmd_utils." + cmd + "\")") 
+      os.chmod(out_path, stat.S_IRWXU)
 
 ################################################################################
 
@@ -58,6 +63,8 @@ if __name__ == "__main__":
     for line in in_file.readlines():
       if line.startswith("bash"):
         add_bash_mapping(line, map1) 
+      elif line.startswith("#"):
+        continue
                          
 
   map1.generate_shortcuts()
