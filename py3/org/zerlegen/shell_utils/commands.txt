@@ -1,0 +1,2 @@
+bash list-files ls -al -R sys.argv[1]
+bash cpu-info cat /proc/cpuinfo
