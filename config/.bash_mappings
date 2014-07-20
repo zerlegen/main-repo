@@ -1,41 +1,102 @@
 
 #-------------------------------------------------------------------------------- 
-# CYGWIN 
+# CYGWIN BINARIES
 
 ## binary locations
 
+### hardware
+
 BIN_ARCH=/usr/bin/arch
 BIN_AS=/usr/bin/as
+
+### programming/languages
+
 BIN_AWK=/usr/bin/awk
+BIN_GCC=/usr/bin/gcc
+
+### file binaries
+
+BIN_BZIP2=/usr/bin/bzip2
+BIN_DOS2UNIX=/usr/bin/dos2unix
+BIN_UNIX2DOS=/usr/bin/unix2dos
+
+BIN_CP=/usr/bin/cp
+
+### misc binaries
+
 BIN_BASE64=/usr/bin/base64
 BIN_BASENAME=/usr/bin/basename
 
-BIN_BZIP2=/usr/bin/bzip2
 
+BIN_CAL=/usr/bin/cal
+
+BIN_CHCON=/usr/bin/chcon
+BIN_CHMOD=/usr/bin/chmod
+BIN_CHOWN=/usr/bin/chown
+BIN_CHGRP=/usr/bin/chgrp
+
+BIN_CKSUM=/usr/bin/cksum
+BIN_CRC32=/usr/bin/crc32
+BIN_MD5SUM=/usr/bin/md5sum
+BIN_SHA256SUM=/usr/bin/sha256sum
+BIN_SHA384SUM=/usr/bin/sha384sum
+BIN_SHA512SUM=/usr/bin/sha512sum
+
+BIN_CURL=/usr/bin/curl
+
+BIN_DATE=/usr/bin/date
+
+
+#-------------------------------------------------------------------------------- 
+# CYGWIN COMMANDS
 
 ## hardware commands
 
 alias show-cpu-architecture=$BIN_ARCH
 alias gnu-assembler=$BIN_AS
 
-
-
 ## network commands
 
 ## file commands
+alias change-file-permissions_bitmask_file=$BIN_CHMOD
+alias change-file-owner_username_file=$BIN_CHOWN
+alias change-file-group_groupname_file=$BIN_CHGRP
+alias change-selinux-security-context-of-file=$BIN_CHCON
+
+alias get-hash-crc=$BIN_CKSUM
+alias get-hash-crc32=$BIN_CRC32
+alias get-hash-md5=$BIN_MD5SUM
+alias get-hash-sha256=$BIN_SHA256SUM
+alias get-hash-sha384=$BIN_SHA384SUM
+alias get-hash-sha512=$BIN_SHA512SUM
+
+alias convert-line-endings-to-dos=$BIN_UNIX2DOS
+alias convert-line-endings-to-unix=$BIN_DOS2UNIX
+
+alias copy-file_src_dest=$BIN_CP
+alias copy-dir-tree_src_dest="$BIN_CP -R"
+
 
 ### compression
 alias bzip-compress-file=$BIN_BZIP2
 alias bzip-uncompress-file="$BIN_BZIP2 -d"
+alias bzip-uncompress-and-show-file="$BIN_BZIP2 -c -d"
 
 ## shell commands
 alias get-file-basename=basename
+
+## programming commands
+alias c-complier=$BIN_GCC
+
 
 ## misc commands
 
 alias awk=$BIN_AWK
 alias encode-file-to-base64=$BIN_BASE64
 alias decode-file-from-base64="$BIN_BASE64 -d"
+alias show-calendar=$BIN_CAL
+alias show-date=$BIN_DATE
+alias set-date_MMddhhmmYYYY=$BIN_DATE 
 
 
 
