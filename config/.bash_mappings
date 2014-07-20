@@ -1,0 +1,51 @@
+
+#-------------------------------------------------------------------------------- 
+# CYGWIN 
+
+## binary locations
+
+BIN_ARCH=/usr/bin/arch
+BIN_AS=/usr/bin/as
+BIN_AWK=/usr/bin/awk
+BIN_BASE64=/usr/bin/base64
+BIN_BASENAME=/usr/bin/basename
+
+BIN_BZIP2=/usr/bin/bzip2
+
+
+## hardware commands
+
+alias show-cpu-architecture=$BIN_ARCH
+alias gnu-assembler=$BIN_AS
+
+
+
+## network commands
+
+## file commands
+
+### compression
+alias bzip-compress-file=$BIN_BZIP2
+alias bzip-uncompress-file="$BIN_BZIP2 -d"
+
+## shell commands
+alias get-file-basename=basename
+
+## misc commands
+
+alias awk=$BIN_AWK
+alias encode-file-to-base64=$BIN_BASE64
+alias decode-file-from-base64="$BIN_BASE64 -d"
+
+
+
+#-------------------------------------------------------------------------------- 
+# RED HAT FAMILY
+
+
+#-------------------------------------------------------------------------------- 
+# UBUNTU
+
+
+#-------------------------------------------------------------------------------- 
+# MAC OS X
