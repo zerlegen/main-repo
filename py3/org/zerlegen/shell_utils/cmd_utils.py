@@ -3,8 +3,8 @@
 
 import subprocess
 
-def print_command_output(prog, args, run_in_shell=False):
-  out = subprocess.check_output([prog, args], shell=run_in_shell)
+def print_command_output(prog_args_list, run_in_shell=False):
+  out = subprocess.check_output(prog_args_list, shell=run_in_shell)
   print(out.decode("utf-8"))
 
  
