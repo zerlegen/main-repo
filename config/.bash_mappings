@@ -66,6 +66,10 @@ BIN_GPGZIP=/usr/bin/gpg-zip
 BIN_GREP=/usr/bin/grep
 BIN_GZIP=/usr/bin/gzip
 
+BIN_GROUPS=/usr/bin/groups
+BIN_HEXDUMP=/usr/bin/hexdump
+BIN_HOSTID=/usr/bin/hostid
+BIN_HOSTNAME=/usr/bin/hostname
 
 #-------------------------------------------------------------------------------- 
 # RED HAT FAMILY
@@ -89,6 +93,8 @@ BIN_GZIP=/usr/bin/gzip
 alias show-cpu-architecture=$BIN_ARCH
 alias show-date=$BIN_DATE
 alias set-date_MMddhhmmYYYY=$BIN_DATE 
+alias get-host-id=$BIN_HOSTID
+alias get-host-name=$BIN_HOSTNAME
 
 
 ## devices
@@ -111,10 +117,17 @@ alias get-disk-usage-of-current-dir="$BIN_DU -h"
 alias get-file-permissions="$BIN_GETFACL -a"
 
 
-### compression/encoding
-alias compress-file-bzip2=$BIN_BZIP2
-alias uncompress-file-bzip2="$BIN_BZIP2 -d"
-alias uncompress-and-show-file-bzip2="$BIN_BZIP2 -c -d"
+### compression/encoding/decoding
+alias compress-file-bzip2_infile=$BIN_BZIP2
+alias uncompress-file-bzip2_infile="$BIN_BZIP2 -d"
+alias uncompress-and-show-file-bzip2_infile="$BIN_BZIP2 -c -d"
+
+compress-file-gzip_infile_outfile() {
+  $BIN_GZIP -c $1 > $2
+}
+
+alias uncompress-file-gzip_infile="$BIN_GZIP -df"
+
 alias get-hash-crc=$BIN_CKSUM
 alias get-hash-crc32=$BIN_CRC32
 alias get-hash-md5=$BIN_MD5SUM
@@ -128,6 +141,10 @@ alias convert-line-endings-to-dos=$BIN_UNIX2DOS
 alias convert-line-endings-to-unix=$BIN_DOS2UNIX
 alias convert-tabs-to-spaces_infile_outfile=$BIN_EXPAND
 alias get-file-type_infile=$BIN_FILE
+
+show-file-hex_offset_file() {
+  $BIN_HEXDUMP -C -s $1 $2 | less
+}
 
 
 ## network 
@@ -159,10 +176,12 @@ get-pseudo-random-data_dest_blocksize_blockcount() {
   $BIN_DD if=/dev/urandom of=$1 bs=$2 count=$3
 }
 
+## user accounts
+
+alias get-groups-for-user_user=$BIN_GROUPS
 
 ## misc commands
 
 alias show-calendar=$BIN_CAL
-
 
 
