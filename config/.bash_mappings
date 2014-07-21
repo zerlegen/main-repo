@@ -71,7 +71,28 @@ BIN_HEXDUMP=/usr/bin/hexdump
 BIN_HOSTID=/usr/bin/hostid
 BIN_HOSTNAME=/usr/bin/hostname
 
-#-------------------------------------------------------------------------------- 
+BIN_ICONV=/usr/bin/iconv
+BIN_ID=/usr/bin/id
+BIN_IPCS=/usr/bin/ipcs
+BIN_LD=/usr/bin/ld
+
+BIN_LDAPADD=/usr/bin/ldapadd
+BIN_LDAPCOMPARE=/usr/bin/ldapcompare
+BIN_LDAPDELETE=/usr/bin/ldapdelete
+BIN_LDAPMODIFY=/usr/bin/ldapmodify
+BIN_LDAPMODRDN=/usr/bin/ldapmodrdn
+BIN_LDAPPASSWD=/usr/bin/ldappasswd
+BIN_LDAPSEARCH=/usr/bin/ldapsearch
+BIN_LDAPURL=/usr/bin/ldapurl
+BIN_LDAPWHOAMI=/usr/bin/ldapwhoami
+
+BIN_LDD=/usr/bin/ldd
+BIN_LESS=/usr/bin/less
+BIN_LN=/usr/bin/ln
+BIN_LOCALE=/usr/bin/locale
+BIN_LOGGER=/usr/bin/logger
+
+#------------------------------------------------------------------------------- 
 # RED HAT FAMILY
 
 
@@ -95,6 +116,10 @@ alias show-date=$BIN_DATE
 alias set-date_MMddhhmmYYYY=$BIN_DATE 
 alias get-host-id=$BIN_HOSTID
 alias get-host-name=$BIN_HOSTNAME
+alias get-ipc-status=$BIN_IPCS
+alias get-user-default-locale_user="$BIN_LOCALE -u"
+alias get-system-default-locale="$BIN_LOCALE -s"
+
 
 
 ## devices
@@ -115,6 +140,7 @@ alias get-file-basename=basename
 alias get-free-disk-space="$BIN_DF -h"
 alias get-disk-usage-of-current-dir="$BIN_DU -h"
 alias get-file-permissions="$BIN_GETFACL -a"
+alias create-symbolic-link_target-file_link-name="$BIN_LN -s"
 
 
 ### compression/encoding/decoding
@@ -146,6 +172,12 @@ show-file-hex_offset_file() {
   $BIN_HEXDUMP -C -s $1 $2 | less
 }
 
+alias show-character-encodings="$BIN_ICONV -l"
+convert-character-encoding_incoding_outcoding_infile_outfile() {
+  $BIN_ICONV -f $1 -t $2 $3 > $4 
+}
+
+
 
 ## network 
 alias start-ftp=$BIN_FTP
@@ -159,6 +191,8 @@ alias awk=$BIN_AWK
 alias gnu-assembler=$BIN_AS
 alias cpp-compiler="$BIN_GPP"
 alias gnu-debugger=$BIN_GDB
+alias gnu-linker=$BIN_LD
+alias show-lib-dependencies_exe-or-lib=$BIN_LDD
 
 ## processes
 send-signal_signal_process() {
@@ -180,8 +214,17 @@ get-pseudo-random-data_dest_blocksize_blockcount() {
 
 alias get-groups-for-user_user=$BIN_GROUPS
 
+
+get-current-user-ids_user() {
+  $BIN_ID $1
+}
+
+get-selinux-security-context-of-user_user() {
+  $BIN_ID -Z $1
+}
+
 ## misc commands
 
 alias show-calendar=$BIN_CAL
-
+alias show-file-by-page=$BIN_LESS
 
