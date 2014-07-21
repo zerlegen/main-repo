@@ -52,6 +52,19 @@ BIN_DU=/usr/bin/du
 BIN_EXPAND=/usr/bin/expand
 BIN_FACTOR=/usr/bin/factor
 BIN_FILE=/usr/bin/file
+BIN_FIND=/usr/bin/find
+BIN_FTP=/usr/bin/ftp
+
+BIN_GPP="/usr/bin/g++"
+BIN_GDB=/usr/bin/gdb
+BIN_GETFACL=/usr/bin/getfacl
+BIN_KILL="/usr/bin/kill.exe"
+BIN_GPG=/usr/bin/gpg
+BIN_GPGSPLIT=/usr/bin/gpgsplit
+BIN_GPGV=/usr/bin/gpgv
+BIN_GPGZIP=/usr/bin/gpg-zip
+BIN_GREP=/usr/bin/grep
+BIN_GZIP=/usr/bin/gzip
 
 
 #-------------------------------------------------------------------------------- 
@@ -95,6 +108,7 @@ alias copy-dir-tree_src_dest="$BIN_CP -R"
 alias get-file-basename=basename
 alias get-free-disk-space="$BIN_DF -h"
 alias get-disk-usage-of-current-dir="$BIN_DU -h"
+alias get-file-permissions="$BIN_GETFACL -a"
 
 
 ### compression/encoding
@@ -117,6 +131,7 @@ alias get-file-type_infile=$BIN_FILE
 
 
 ## network 
+alias start-ftp=$BIN_FTP
 
 ## math
 alias factor-integer_int=$BIN_FACTOR
@@ -125,6 +140,14 @@ alias factor-integer_int=$BIN_FACTOR
 alias c-complier=$BIN_GCC
 alias awk=$BIN_AWK
 alias gnu-assembler=$BIN_AS
+alias cpp-compiler="$BIN_GPP"
+alias gnu-debugger=$BIN_GDB
+
+## processes
+send-signal_signal_process() {
+  $BIN_KILL -$1 $2
+}
+alias show-signals="$BIN_KILL -l"
 
 ## security
 
