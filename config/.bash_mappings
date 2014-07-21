@@ -46,58 +46,12 @@ BIN_CURL=/usr/bin/curl
 
 BIN_DATE=/usr/bin/date
 
-
-#-------------------------------------------------------------------------------- 
-# CYGWIN COMMANDS
-
-## hardware commands
-
-alias show-cpu-architecture=$BIN_ARCH
-alias gnu-assembler=$BIN_AS
-
-## network commands
-
-## file commands
-alias change-file-permissions_bitmask_file=$BIN_CHMOD
-alias change-file-owner_username_file=$BIN_CHOWN
-alias change-file-group_groupname_file=$BIN_CHGRP
-alias change-selinux-security-context-of-file=$BIN_CHCON
-
-alias get-hash-crc=$BIN_CKSUM
-alias get-hash-crc32=$BIN_CRC32
-alias get-hash-md5=$BIN_MD5SUM
-alias get-hash-sha256=$BIN_SHA256SUM
-alias get-hash-sha384=$BIN_SHA384SUM
-alias get-hash-sha512=$BIN_SHA512SUM
-
-alias convert-line-endings-to-dos=$BIN_UNIX2DOS
-alias convert-line-endings-to-unix=$BIN_DOS2UNIX
-
-alias copy-file_src_dest=$BIN_CP
-alias copy-dir-tree_src_dest="$BIN_CP -R"
-
-
-### compression
-alias bzip-compress-file=$BIN_BZIP2
-alias bzip-uncompress-file="$BIN_BZIP2 -d"
-alias bzip-uncompress-and-show-file="$BIN_BZIP2 -c -d"
-
-## shell commands
-alias get-file-basename=basename
-
-## programming commands
-alias c-complier=$BIN_GCC
-
-
-## misc commands
-
-alias awk=$BIN_AWK
-alias encode-file-to-base64=$BIN_BASE64
-alias decode-file-from-base64="$BIN_BASE64 -d"
-alias show-calendar=$BIN_CAL
-alias show-date=$BIN_DATE
-alias set-date_MMddhhmmYYYY=$BIN_DATE 
-
+BIN_DD=/usr/bin/dd
+BIN_DF=/usr/bin/df
+BIN_DU=/usr/bin/du
+BIN_EXPAND=/usr/bin/expand
+BIN_FACTOR=/usr/bin/factor
+BIN_FILE=/usr/bin/file
 
 
 #-------------------------------------------------------------------------------- 
@@ -110,3 +64,82 @@ alias set-date_MMddhhmmYYYY=$BIN_DATE
 
 #-------------------------------------------------------------------------------- 
 # MAC OS X
+
+
+#-------------------------------------------------------------------------------- 
+#-------------------------------------------------------------------------------- 
+#-------------------------------------------------------------------------------- 
+# COMMANDS
+
+## system information 
+
+alias show-cpu-architecture=$BIN_ARCH
+alias show-date=$BIN_DATE
+alias set-date_MMddhhmmYYYY=$BIN_DATE 
+
+
+## devices
+
+copy-device-data_src_dest_blocksize_blockcount() {
+  $BIN_DD if=$1 of=$2 bs=$3 count=$4
+}
+
+
+## filesystem 
+alias change-file-permissions_bitmask_file=$BIN_CHMOD
+alias change-file-owner_username_file=$BIN_CHOWN
+alias change-file-group_groupname_file=$BIN_CHGRP
+alias change-selinux-security-context-of-file=$BIN_CHCON
+alias copy-file_src_dest=$BIN_CP
+alias copy-dir-tree_src_dest="$BIN_CP -R"
+alias get-file-basename=basename
+alias get-free-disk-space="$BIN_DF -h"
+alias get-disk-usage-of-current-dir="$BIN_DU -h"
+
+
+### compression/encoding
+alias compress-file-bzip2=$BIN_BZIP2
+alias uncompress-file-bzip2="$BIN_BZIP2 -d"
+alias uncompress-and-show-file-bzip2="$BIN_BZIP2 -c -d"
+alias get-hash-crc=$BIN_CKSUM
+alias get-hash-crc32=$BIN_CRC32
+alias get-hash-md5=$BIN_MD5SUM
+alias get-hash-sha256=$BIN_SHA256SUM
+alias get-hash-sha384=$BIN_SHA384SUM
+alias get-hash-sha512=$BIN_SHA512SUM
+alias encode-file-to-base64=$BIN_BASE64
+alias decode-file-from-base64="$BIN_BASE64 -d"
+
+alias convert-line-endings-to-dos=$BIN_UNIX2DOS
+alias convert-line-endings-to-unix=$BIN_DOS2UNIX
+alias convert-tabs-to-spaces_infile_outfile=$BIN_EXPAND
+alias get-file-type_infile=$BIN_FILE
+
+
+## network 
+
+## math
+alias factor-integer_int=$BIN_FACTOR
+
+## programming 
+alias c-complier=$BIN_GCC
+alias awk=$BIN_AWK
+alias gnu-assembler=$BIN_AS
+
+## security
+
+get-random-data_dest_blocksize_blockcount() {
+  $BIN_DD if=/dev/random of=$1 bs=$2 count=$3
+}
+
+get-pseudo-random-data_dest_blocksize_blockcount() {
+  $BIN_DD if=/dev/urandom of=$1 bs=$2 count=$3
+}
+
+
+## misc commands
+
+alias show-calendar=$BIN_CAL
+
+
+
