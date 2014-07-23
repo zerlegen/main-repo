@@ -91,6 +91,14 @@ BIN_LESS=/usr/bin/less
 BIN_LN=/usr/bin/ln
 BIN_LOCALE=/usr/bin/locale
 BIN_LOGGER=/usr/bin/logger
+BIN_LS=/usr/bin/ls
+BIN_MAKE=/usr/bin/make
+BIN_MKDIR=/usr/bin/mkdir
+BIN_MV=/usr/bin/mv
+BIN_OBJDUMP=/usr/bin/objdump
+BIN_OPENSSL=/usr/bin/openssl
+BIN_PRINTENV=/usr/bin/printenv
+BIN_PS=/usr/bin/ps
 
 #------------------------------------------------------------------------------- 
 # RED HAT FAMILY
@@ -119,6 +127,7 @@ alias get-host-name=$BIN_HOSTNAME
 alias get-ipc-status=$BIN_IPCS
 alias get-user-default-locale_user="$BIN_LOCALE -u"
 alias get-system-default-locale="$BIN_LOCALE -s"
+alias show-environment-variables="$BIN_PRINTENV"
 
 
 
@@ -141,6 +150,11 @@ alias get-free-disk-space="$BIN_DF -h"
 alias get-disk-usage-of-current-dir="$BIN_DU -h"
 alias get-file-permissions="$BIN_GETFACL -a"
 alias create-symbolic-link_target-file_link-name="$BIN_LN -s"
+alias show-directories="$BIN_LS -ld"
+alias show-all-files="$BIN_LS -alh"
+alias make-directory_path="$BIN_MKDIR"
+alias move-file=$BIN_MV
+alias rename-file=$BIN_MV
 
 
 ### compression/encoding/decoding
@@ -193,6 +207,7 @@ alias cpp-compiler="$BIN_GPP"
 alias gnu-debugger=$BIN_GDB
 alias gnu-linker=$BIN_LD
 alias show-lib-dependencies_exe-or-lib=$BIN_LDD
+alias gnu-make=$BIN_MAKE
 
 ## processes
 send-signal_signal_process() {
