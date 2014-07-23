@@ -38,6 +38,7 @@ BIN_CHGRP=/usr/bin/chgrp
 BIN_CKSUM=/usr/bin/cksum
 BIN_CRC32=/usr/bin/crc32
 BIN_MD5SUM=/usr/bin/md5sum
+BIN_SHA1SUM=/usr/bin/sha1sum
 BIN_SHA256SUM=/usr/bin/sha256sum
 BIN_SHA384SUM=/usr/bin/sha384sum
 BIN_SHA512SUM=/usr/bin/sha512sum
@@ -99,6 +100,18 @@ BIN_OBJDUMP=/usr/bin/objdump
 BIN_OPENSSL=/usr/bin/openssl
 BIN_PRINTENV=/usr/bin/printenv
 BIN_PS=/usr/bin/ps
+BIN_PWD=/usr/bin/pwd
+BIN_READELF=/usr/bin/readelf
+BIN_READLINK=/usr/bin/readlink
+BIN_RENICE=/usr/bin/renice
+BIN_RMDIR=/usr/bin/rmdir
+BIN_RM=/usr/bin/rm
+BIN_RSYNC=/usr/bin/rsync
+
+BIN_SCP=/usr/bin/scp
+BIN_SFTP=/usr/bin/sftp
+BIN_SIZE=/usr/bin/size
+BIN_SORT=/usr/bin/sort
 
 #------------------------------------------------------------------------------- 
 # RED HAT FAMILY
@@ -149,12 +162,20 @@ alias get-file-basename=basename
 alias get-free-disk-space="$BIN_DF -h"
 alias get-disk-usage-of-current-dir="$BIN_DU -h"
 alias get-file-permissions="$BIN_GETFACL -a"
+alias get-current-directory=$BIN_PWD
 alias create-symbolic-link_target-file_link-name="$BIN_LN -s"
 alias show-directories="$BIN_LS -ld"
 alias show-all-files="$BIN_LS -alh"
 alias make-directory_path="$BIN_MKDIR"
 alias move-file=$BIN_MV
 alias rename-file=$BIN_MV
+alias view-symbolic-link=$BIN_READLINK
+alias delete-empty-directory=$BIN_RMDIR
+alias delete-file=$BIN_RM
+alias delete-file-FORCE="$BIN_RM -f"
+alias delete-tree="$BIN_RM -r"
+alias delete-tree-FORCE="$BIN_RM -rf"
+
 
 
 ### compression/encoding/decoding
@@ -171,6 +192,7 @@ alias uncompress-file-gzip_infile="$BIN_GZIP -df"
 alias get-hash-crc=$BIN_CKSUM
 alias get-hash-crc32=$BIN_CRC32
 alias get-hash-md5=$BIN_MD5SUM
+alias get-hash-sha1=$BIN_SHA1SUM
 alias get-hash-sha256=$BIN_SHA256SUM
 alias get-hash-sha384=$BIN_SHA384SUM
 alias get-hash-sha512=$BIN_SHA512SUM
@@ -182,7 +204,7 @@ alias convert-line-endings-to-unix=$BIN_DOS2UNIX
 alias convert-tabs-to-spaces_infile_outfile=$BIN_EXPAND
 alias get-file-type_infile=$BIN_FILE
 
-show-file-hex_offset_file() {
+view-file-hex_offset_file() {
   $BIN_HEXDUMP -C -s $1 $2 | less
 }
 
@@ -195,6 +217,9 @@ convert-character-encoding_incoding_outcoding_infile_outfile() {
 
 ## network 
 alias start-ftp=$BIN_FTP
+copy-tree-secure_local-str_remote-str() {
+  $BIN_SCP -r $1 $2
+}
 
 ## math
 alias factor-integer_int=$BIN_FACTOR
@@ -208,12 +233,16 @@ alias gnu-debugger=$BIN_GDB
 alias gnu-linker=$BIN_LD
 alias show-lib-dependencies_exe-or-lib=$BIN_LDD
 alias gnu-make=$BIN_MAKE
+alias show-binary-section-sizes_binary=$BIN_SIZE
 
 ## processes
 send-signal_signal_process() {
   $BIN_KILL -$1 $2
 }
 alias show-signals="$BIN_KILL -l"
+change-process-priority_priority_process-id() {
+  $BIN_RENICE -n $1 $2 
+}
 
 ## security
 
@@ -241,5 +270,7 @@ get-selinux-security-context-of-user_user() {
 ## misc commands
 
 alias show-calendar=$BIN_CAL
-alias show-file-by-page=$BIN_LESS
+alias view-file-by-page=$BIN_LESS
+alias view-file-elf="$BIN_READELF -a"
+alias sort-file-lines_file="$BIN_SORT"
 
