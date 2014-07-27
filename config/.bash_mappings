@@ -131,6 +131,19 @@ BIN_UNEXPAND=/usr/bin/unexpand
 BIN_UUIDGEN=/usr/bin/uuidgen
 BIN_WC=/usr/bin/wc
 BIN_WGET=/usr/bin/wget
+BIN_YES=/usr/bin/yes
+BIN_ZIP=/usr/bin/zip
+
+
+BIN_FDISK=/usr/sbin/fdisk
+BIN_FINDFS=/usr/sbin/findfs
+BIN_FSCK=/usr/sbin/fsck
+BIN_FTPD=/usr/sbin/ftpd
+BIN_MKFS=/usr/sbin/mkfs
+BIN_MKSWAP=/usr/sbin/mkswap
+BIN_SSHD=/usr/sbin/sshd
+BIN_SYSLOGD=/usr/sbin/syslogd
+
 
 
 #------------------------------------------------------------------------------- 
@@ -153,15 +166,33 @@ BIN_WGET=/usr/bin/wget
 ## system information 
 
 alias show-cpu-architecture=$BIN_ARCH
+alias spu=show-cpu-architecture
+
 alias show-date=$BIN_DATE
+
 alias set-date_MMddhhmmYYYY=$BIN_DATE 
+
 alias get-host-id=$BIN_HOSTID
+alias ghi=get-host-id
+
 alias get-host-name=$BIN_HOSTNAME
+alias ghn=get-host-name
+
+
 alias get-ipc-status=$BIN_IPCS
+alias gis=get-ipc-status
+
 alias get-user-default-locale_user="$BIN_LOCALE -u"
+alias gudl=get-user-default-locale_user
+
 alias get-system-default-locale="$BIN_LOCALE -s"
+alias gsdl=get-system-default-locale
+
 alias show-environment-variables="$BIN_PRINTENV"
+alias sev=show-environment-variables
+
 alias show-platform-info="$BIN_UNAME -a"
+alias spi=show-platform-info
 
 
 
@@ -171,9 +202,12 @@ copy-device-data_src_dest_blocksize_blockcount() {
   $BIN_DD if=$1 of=$2 bs=$3 count=$4
 }
 
+alias cdd=copy-device-data_src_dest_blocksize_blockcount
 
 ## filesystem 
 alias change-file-permissions_bitmask_file=$BIN_CHMOD
+alias cfp_bitmask_file=change-file-permissions_bitmask_file
+
 alias change-file-owner_username_file=$BIN_CHOWN
 alias change-file-group_groupname_file=$BIN_CHGRP
 alias change-selinux-security-context-of-file=$BIN_CHCON
@@ -254,7 +288,7 @@ alias start-ftp=$BIN_FTP
 copy-tree-secure_local-str_remote-str() {
   $BIN_SCP -r $1 $2
 }
-alias download $BIN_WGET
+alias download="$BIN_WGET"
 
 ## math
 alias factor-integer_int=$BIN_FACTOR
@@ -278,6 +312,7 @@ alias show-signals="$BIN_KILL -l"
 change-process-priority_priority_process-id() {
   $BIN_RENICE -n $1 $2 
 }
+
 
 ## security
 
@@ -310,4 +345,4 @@ alias view-file-elf="$BIN_READELF -a"
 alias sort-file-lines_file="$BIN_SORT"
 alias run-with-timeout=$BIN_TIMEOUT
 alias generate-uuid=$BIN_UUIDGEN
-
+alias print-until-killed_string=$BIN_YES
