@@ -144,7 +144,7 @@ BIN_MKSWAP=/usr/sbin/mkswap
 BIN_SSHD=/usr/sbin/sshd
 BIN_SYSLOGD=/usr/sbin/syslogd
 
-
+BIN_CD=cd
 
 #------------------------------------------------------------------------------- 
 # RED HAT FAMILY
@@ -165,61 +165,65 @@ BIN_SYSLOGD=/usr/sbin/syslogd
 
 ## system information 
 
-#alias show-cpu-architecture=$BIN_ARCH
-#alias spu=show-cpu-architecture
-alias cpu-arch-show=$BIN_ARCH
+alias cpu-arch-show--cas=$BIN_ARCH
+alias cas=cpu-arch-show--cas
 
-#alias show-date=$BIN_DATE
-alias date-show=$BIN_DATE
+alias date-show--das=$BIN_DATE
+alias das=date-show--das
 
-#alias set-date_MMddhhmmYYYY=$BIN_DATE 
-alias date-set_MMddhhmmYYYY=$BIN_DATE 
+alias date-set--dase_MMddhhmmYYYY=$BIN_DATE 
+alias dase=date-set--dase_MMddhhmmYYYY
 
+alias host-id-show--hids=$BIN_HOSTID
+alias hids=host-id-show--hids
 
-alias host-id-show=$BIN_HOSTID
-alias host-name-show=$BIN_HOSTNAME
+alias host-name-show--hns=$BIN_HOSTNAME
+alias hns=host-name-show--hns
 
+alias ipc-status-show--iss=$BIN_IPCS
+alias iss=ipc-status-show--iss
 
-#alias get-ipc-status=$BIN_IPCS
-alias ipc-status-show=$BIN_IPCS
+alias user-default-locale-show--udls_user="$BIN_LOCALE -u"
+alias udls=user-default-locale-show--udls_user
 
+alias system-default-locale-show--sdls="$BIN_LOCALE -s"
+alias sdls=system-default-locale-show--sdls
 
-#alias get-user-default-locale_user="$BIN_LOCALE -u"
-alias user-default-locale-show_user="$BIN_LOCALE -u"
+alias env-variables-show--evs="$BIN_PRINTENV"
+alias evs=env-variables-show--evs
 
-
-#alias get-system-default-locale="$BIN_LOCALE -s"
-alias system-default-locale-show="$BIN_LOCALE -s"
-
-#alias show-environment-variables="$BIN_PRINTENV"
-alias env-variables-show="$BIN_PRINTENV"
-
-
-#alias show-platform-info="$BIN_UNAME -a"
-alias platform-info-show="$BIN_UNAME -a"
+alias platform-info-show--pis="$BIN_UNAME -a"
+alias pis=platform-info-show--pis
 
 
 
 ## devices
 
 #copy-device-data_src_dest_blocksize_blockcount() {
-device-data-copy_src_dest_blocksize_blockcount() {
+device-data-copy--ddc_src_dest_blocksize_blockcount() {
   $BIN_DD if=$1 of=$2 bs=$3 count=$4
 }
+alias ddc=device-data-copy--ddc_src_dest_blocksize_blockcount
 
 
 ## filesystem 
-alias file-move=$BIN_MV
-alias fm=file-move
+alias file-move--fm=$BIN_MV
+alias fm=file-move--fm
 
-alias file-rename=$BIN_MV
-alias fr=file-rename
+alias file-rename--fr=$BIN_MV
+alias fr=file-rename--fr
 
-alias file-copy_src_dest=$BIN_CP
-alias fcop_src_dest=file-copy_src_dest
+alias file-copy--fcop_src_dest=$BIN_CP
+alias fcop=file-copy--fcop_src_dest
 
-alias files-show-all="$BIN_LS -alh"
-alias fsa=files-show-all
+alias files-show-all--fsa="$BIN_LS"
+alias fsa=files-show-all--fsa
+
+alias file-show-meta--fsm_file="$BIN_LS -alh"
+alias fsm=file-show-meta--fsm_file
+
+alias files-show-all-meta--fsam="$BIN_LS -alh"
+alias fsam=files-show-all-meta--fsam
 
 alias file-delete=$BIN_RM
 alias fd=file-delete
@@ -230,127 +234,170 @@ alias fdF=file-delete-FORCE
 alias file-status-show=$BIN_STAT
 alias fss=file-status-show
 
-alias file-change-permissions_bitmask_file=$BIN_CHMOD
-alias fcp_bitmask_file=file-change-permissions_bitmask_file
+alias file-change-permissions--fcp_bitmask_file=$BIN_CHMOD
+alias fcp=file-change-permissions--fcp_bitmask_file
 
-alias file-change-owner_username_file=$BIN_CHOWN
-alias fcow_username_file=file-change-owner_username_file
+alias file-change-owner--fchown_username_file=$BIN_CHOWN
+alias fchown=file-change-owner--fchown_username_file
 
-alias file-change-group_groupname_file=$BIN_CHGRP
-alias fcg_groupname_file=file-change-group_groupname_file
+alias file-change-group--fcgr_groupname_file=$BIN_CHGRP
+alias fcgr=file-change-group--fcgr_groupname_file
 
-alias filesystem-status-show=$BIN_STAT
-alias fsss=filesystem-status-show
+alias filesystem-status-show--fsss_path=$BIN_STAT
+alias fsss=filesystem-status-show--fsss_path
 
-alias file-basename-show=basename
-alias fbs=file-basename-show
+alias file-basename-show--fbs=basename
+alias fbs=file-basename-show--fbs
 
-alias file-permissions-show="$BIN_GETFACL -a"
-alias fps=file-permissions-show
+alias file-permissions-show--fps="$BIN_GETFACL -a"
+alias fps=file-permissions-show--fps
 
-alias file-byte-count-show="$BIN_WC -c"
-alias fbcs=file-byte-count-show
+alias file-byte-count-show--fbcs="$BIN_WC -c"
+alias fbcs=file-byte-count-show--fbcs
 
-alias file-word-count-show="$BIN_WC -w"
-alias fwcs=file-word-count-show
+alias file-word-count-show--fwcs="$BIN_WC -w"
+alias fwcs=file-word-count-show--fwcs
 
-alias file-line-count-show="$BIN_WC -l"
-alias flcs=file-line-count-show
+alias file-line-count-show--flcs="$BIN_WC -l"
+alias flcs=file-line-count-show--flcs
 
-alias file-char-count-show="$BIN_WC -m"
-alias fccs=file-char-count-show
+alias file-char-count-show--fccs="$BIN_WC -m"
+alias fccs=file-char-count-show--fccs
 
-alias file-reverse-show=$BIN_TAC
-alias frs=file-reverse-show
+alias file-reverse-lines-show--frls=$BIN_TAC
+alias frls=file-reverse-lines-show--frls
 
-alias file-printable-strings-show=$BIN_STRINGS
-alias fpss=file-printable-strings-show
+alias file-printable-strings-show--fpss=$BIN_STRINGS
+alias fpss=file-printable-strings-show--fpss
 
-alias file-end-show=$BIN_TAIL
-alias fes=file-end-show
+alias file-end-show--fes=$BIN_TAIL
+alias fes=file-end-show--fes
 
-alias file-watch-end=$BIN_TAILF
-alias fwe=file-watch-end
+alias file-watch-end--fwe=$BIN_TAILF
+alias fwe=file-watch-end--fwe
 
-alias filesystem-sync-buffers=$BIN_SYNC
-alias fssb=filesystem-sync-buffers
+alias filesystem-sync-buffers--fssb=$BIN_SYNC
+alias fssb=filesystem-sync-buffers--fssb
 
-alias dirs-show="$BIN_LS -ld"
-alias ds=dirs-show
+alias dirs-show--ds="$BIN_LS -ld"
+alias ds=dirs-show--ds
 
-alias dir-make_path="$BIN_MKDIR"
-alias dm_path=dir-make_path
+alias dir-make_path--dm="$BIN_MKDIR"
+alias dm=dir-make_path--dm
 
-alias dir-current-show=$BIN_PWD
-alias dcs=dir-current-show
+alias dir-current-show--dcs=$BIN_PWD
+alias dcs=dir-current-show--dcs
 
-alias dir-delete-empty=$BIN_RMDIR
-alias dde=dir-delete-empty
+alias dir-delete-empty--dde=$BIN_RMDIR
+alias dde=dir-delete-empty--dde
 
-alias dirtree-copy_src_dest="$BIN_CP -R"
-alias dtc_src_dest=dirtree-copy_src_dest
+alias dir-change--dch=$BIN_CD
+alias dch=dir-change--dch
 
-alias dirtree-delete="$BIN_RM -r"
-alias dtd=dirtree-delete
+alias dirtree-copy_src_dest--dtc="$BIN_CP -R"
+alias dtc=dirtree-copy_src_dest--dtc
 
-alias dirtree-delete-FORCE="$BIN_RM -rf"
-alias dtdF=dirtree-delete-FORCE
+alias dirtree-delete--dtd="$BIN_RM -r"
+alias dtd=dirtree-delete--dtd
 
-alias selinux-change-security-context-of-file=$BIN_CHCON
-alias selcsc=selinux-change-security-context-of-file
+alias dirtree-delete-FORCE--dtdF="$BIN_RM -rf"
+alias dtdF=dirtree-delete-FORCE--dtdF
 
-alias symlink-create_target-file_link-name="$BIN_LN -s"
-alias slc_target-file_link-name=symlink-create_target-file_link-name
+alias selinux-change-security-context--selcsc_file=$BIN_CHCON
+alias selcsc=selinux-change-security-context--selcsc_file
 
-alias symlink-view=$BIN_READLINK
-alias slv=symlink-view
+alias symlink-create_target-file_link-name--slc="$BIN_LN -s"
+alias slc=symlink-create_target-file_link-name--slc
 
-alias disk-space-show-free="$BIN_DF -h"
-alias dssf=disk-space-show-free
+alias symlink-view--slv=$BIN_READLINK
+alias slv=symlink-view--slv
 
-alias disk-space-current-dir-show="$BIN_DU -h"
-alias dscds=disk-space-current-dir-show
+alias disk-space-show-free--dssf="$BIN_DF -h"
+alias dssf=disk-space-show-free--dssf
+
+alias disk-space-current-dir-show--dscds="$BIN_DU -h"
+alias dscds=disk-space-current-dir-show--dscds
 
 
 ### compression/encoding/decoding
-alias file-compress-bzip2_infile=$BIN_BZIP2
-alias file-uncompress-bzip2_infile="$BIN_BZIP2 -d"
-alias file-uncompress-and-show-bzip2_infile="$BIN_BZIP2 -c -d"
-file-compress-gzip_infile_outfile() {
+alias file-compress-bzip2--fcb_infile=$BIN_BZIP2
+alias fcb=file-compress-bzip2--fcb_infile
+
+alias file-uncompress-bzip2--fub_infile="$BIN_BZIP2 -d"
+alias fub=file-uncompress-bzip2--fub_infile
+
+alias file-uncompress-and-show-bzip2--fusb_infile="$BIN_BZIP2 -c -d"
+alias fusb=file-uncompress-and-show-bzip2--fusb_infile
+
+file-compress-gzip--fcgz_infile_outfile() {
   $BIN_GZIP -c $1 > $2
 }
-alias file-uncompress-gzip_infile="$BIN_GZIP -df"
+alias fcgz=file-compress-gzip--fcgz_infile_outfile
 
-alias file-hash-crc-show=$BIN_CKSUM
-alias file-hash-crc32-show=$BIN_CRC32
-alias file-hash-md5-show=$BIN_MD5SUM
-alias file-hash-sha1-show=$BIN_SHA1SUM
-alias file-hash-sha256-show=$BIN_SHA256SUM
-alias file-hash-sha384-show=$BIN_SHA384SUM
-alias file-hash-sha512-show=$BIN_SHA512SUM
-alias file-encode-to-base64=$BIN_BASE64
-alias file-decode-from-base64="$BIN_BASE64 -d"
+alias file-uncompress-gzip_infile--fugz="$BIN_GZIP -df"
+alias fugz=file-uncompress-gzip_infile--fugz
 
-alias file-convert-line-endings-to-dos=$BIN_UNIX2DOS
-alias file-convert-line-endings-to-unix=$BIN_DOS2UNIX
-alias file-convert-tabs-to-spaces_infile_outfile=$BIN_EXPAND
-alias file-convert-spaces-to-tabs_infile_outfile=$BIN_UNEXPAND
+alias file-hash-crc-show--fhcs=$BIN_CKSUM
+alias fhcs=file-hash-crc-show--fhcs
 
-alias file-get-type_infile=$BIN_FILE
+alias file-hash-crc32-show--fhc32s=$BIN_CRC32
+alias fhc32s=file-hash-crc32-show--fhc32s
 
-file-view-hex_offset_file() {
+alias file-hash-md5-show--fhms=$BIN_MD5SUM
+alias fhms=file-hash-md5-show--fhms
+
+alias file-hash-sha1-show--fhs1s=$BIN_SHA1SUM
+alias fhs1s=file-hash-sha1-show--fhs1s
+
+alias file-hash-sha256-show--fhs2s=$BIN_SHA256SUM
+alias fhs2s=file-hash-sha256-show--fhs2s
+
+alias file-hash-sha384-show--fhs3s=$BIN_SHA384SUM
+alias fhs3s=file-hash-sha384-show--fhs3s
+
+alias file-hash-sha512-show--fhs5s=$BIN_SHA512SUM
+alias fhs5s=file-hash-sha512-show--fhs5s
+
+alias file-encode-to-base64--fetb64=$BIN_BASE64
+alias fetb64=file-encode-to-base64--fetb64
+
+alias file-decode-from-base64--fdfb64="$BIN_BASE64 -d"
+alias fdfb64=file-decode-from-base64--fdfb64
+
+alias file-convert-line-endings-to-dos--fcletd=$BIN_UNIX2DOS
+alias fcletd=file-convert-line-endings-to-dos--fcletd
+
+alias file-convert-line-endings-to-unix--fcletu=$BIN_DOS2UNIX
+alias fcletu=file-convert-line-endings-to-unix--fcletu
+
+alias file-convert-tabs-to-spaces--fctts_infile_outfile=$BIN_EXPAND
+alias fctts=file-convert-tabs-to-spaces--fctts_infile_outfile
+
+alias file-convert-spaces-to-tabs--fcstt_infile_outfile=$BIN_UNEXPAND
+alias fcstt=file-convert-spaces-to-tabs--fcstt_infile_outfile
+
+alias file-get-type--fgt_infile=$BIN_FILE
+alias fgt=file-get-type--fgt_infile 
+
+file-view-hex--fvh_offset_file() {
   $BIN_HEXDUMP -C -s $1 $2 | less
 }
+alias fvh=file-view-hex--fvh_offset_file
 
-alias char-encodings-show="$BIN_ICONV -l"
-char-encoding-convert_incoding_outcoding_infile_outfile() {
+
+alias char-encodings-show--ces="$BIN_ICONV -l"
+alias ces=char-encodings-show--ces
+
+char-encoding-convert--cec_incoding_outcoding_infile_outfile() {
   $BIN_ICONV -f $1 -t $2 $3 > $4 
 }
+alias cec=char-encoding-convert--cec_incoding_outcoding_infile_outfile
 
 
 
 ## network 
-alias start-ftp=$BIN_FTP
+alias network-ftp-start=$BIN_FTP
+
 copy-tree-secure_local-str_remote-str() {
   $BIN_SCP -r $1 $2
 }
