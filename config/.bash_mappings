@@ -396,32 +396,61 @@ alias cec=char-encoding-convert--cec_incoding_outcoding_infile_outfile
 
 
 ## network 
-alias network-ftp-start=$BIN_FTP
+alias network-ftp-start--nfs=$BIN_FTP
+alias nfs=network-ftp-start--nfs
 
-copy-tree-secure_local-str_remote-str() {
+network-copy-tree-secure--ncts_local-str_remote-str() {
   $BIN_SCP -r $1 $2
 }
-alias download="$BIN_WGET"
+alias ncts=network-copy-tree-secure--ncts_local-str_remote-str
+
+
+alias network-download--nd="$BIN_WGET"
+alias nd=network-download--nd
 
 ## math
-alias factor-integer_int=$BIN_FACTOR
+alias math-factor-integer--mfi_int=$BIN_FACTOR
+alias mfi=math-factor-integer--mfi_int
+
 
 ## programming 
-alias c-complier=$BIN_GCC
-alias awk=$BIN_AWK
-alias gnu-assembler=$BIN_AS
-alias cpp-compiler="$BIN_GPP"
-alias gnu-debugger=$BIN_GDB
-alias gnu-linker=$BIN_LD
-alias show-lib-dependencies_exe-or-lib=$BIN_LDD
-alias gnu-make=$BIN_MAKE
-alias show-binary-section-sizes_binary=$BIN_SIZE
+alias prog-c-complier--pcc=$BIN_GCC
+alias pcc=prog-c-compiler--pcc
+
+alias prog-awk--paw=$BIN_AWK
+alias paw=prog-awk--paw
+
+alias prog-gnu-assembler--pga=$BIN_AS
+alias pga=prog-gnu-assembler--pga
+
+alias prog-cpp-compiler--pcppc="$BIN_GPP"
+alias pcppc=prog-cpp-compiler--pcppc
+
+alias prog-gnu-debugger--pgdb=$BIN_GDB
+alias pgdb=prog-gun-debugger--pgdb
+
+alias prog-gnu-linker--pgl=$BIN_LD
+alias pgl=prog-gnu-linker--pgl
+
+alias prog-show-lib-dependencies--psld_exe-or-lib=$BIN_LDD
+alias psld=prog-show-lib-dependencies--psld_exe-or-lib
+
+alias prog-gnu-make--pgm=$BIN_MAKE
+alias pgm=prog-gnu-make--pgm
+
+alias prog-show-binary-section-sizes--psbss_binary=$BIN_SIZE
+alias psbss=prog-show-binary-section-sizes--psbss_binary
+
 
 ## processes
-send-signal_signal_process() {
+signal-send--sigs_signal_process() {
   $BIN_KILL -$1 $2
 }
-alias show-signals="$BIN_KILL -l"
+alias sigsn=signal-send--sigs_signal_process
+
+alias signals-show--sigsh="$BIN_KILL -l"
+alias sigsh=signals-show--sigsh
+
 change-process-priority_priority_process-id() {
   $BIN_RENICE -n $1 $2 
 }
