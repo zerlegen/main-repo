@@ -165,119 +165,185 @@ BIN_SYSLOGD=/usr/sbin/syslogd
 
 ## system information 
 
-alias show-cpu-architecture=$BIN_ARCH
-alias spu=show-cpu-architecture
+#alias show-cpu-architecture=$BIN_ARCH
+#alias spu=show-cpu-architecture
+alias cpu-arch-show=$BIN_ARCH
 
-alias show-date=$BIN_DATE
+#alias show-date=$BIN_DATE
+alias date-show=$BIN_DATE
 
-alias set-date_MMddhhmmYYYY=$BIN_DATE 
-
-alias get-host-id=$BIN_HOSTID
-alias ghi=get-host-id
-
-alias get-host-name=$BIN_HOSTNAME
-alias ghn=get-host-name
+#alias set-date_MMddhhmmYYYY=$BIN_DATE 
+alias date-set_MMddhhmmYYYY=$BIN_DATE 
 
 
-alias get-ipc-status=$BIN_IPCS
-alias gis=get-ipc-status
+alias host-id-show=$BIN_HOSTID
+alias host-name-show=$BIN_HOSTNAME
 
-alias get-user-default-locale_user="$BIN_LOCALE -u"
-alias gudl=get-user-default-locale_user
 
-alias get-system-default-locale="$BIN_LOCALE -s"
-alias gsdl=get-system-default-locale
+#alias get-ipc-status=$BIN_IPCS
+alias ipc-status-show=$BIN_IPCS
 
-alias show-environment-variables="$BIN_PRINTENV"
-alias sev=show-environment-variables
 
-alias show-platform-info="$BIN_UNAME -a"
-alias spi=show-platform-info
+#alias get-user-default-locale_user="$BIN_LOCALE -u"
+alias user-default-locale-show_user="$BIN_LOCALE -u"
+
+
+#alias get-system-default-locale="$BIN_LOCALE -s"
+alias system-default-locale-show="$BIN_LOCALE -s"
+
+#alias show-environment-variables="$BIN_PRINTENV"
+alias env-variables-show="$BIN_PRINTENV"
+
+
+#alias show-platform-info="$BIN_UNAME -a"
+alias platform-info-show="$BIN_UNAME -a"
 
 
 
 ## devices
 
-copy-device-data_src_dest_blocksize_blockcount() {
+#copy-device-data_src_dest_blocksize_blockcount() {
+device-data-copy_src_dest_blocksize_blockcount() {
   $BIN_DD if=$1 of=$2 bs=$3 count=$4
 }
 
-alias cdd=copy-device-data_src_dest_blocksize_blockcount
 
 ## filesystem 
-alias change-file-permissions_bitmask_file=$BIN_CHMOD
-alias cfp_bitmask_file=change-file-permissions_bitmask_file
+alias file-move=$BIN_MV
+alias fm=file-move
 
-alias change-file-owner_username_file=$BIN_CHOWN
-alias change-file-group_groupname_file=$BIN_CHGRP
-alias change-selinux-security-context-of-file=$BIN_CHCON
-alias copy-file_src_dest=$BIN_CP
-alias copy-dir-tree_src_dest="$BIN_CP -R"
-alias get-file-basename=basename
-alias get-free-disk-space="$BIN_DF -h"
-alias get-disk-usage-of-current-dir="$BIN_DU -h"
-alias get-file-permissions="$BIN_GETFACL -a"
-alias get-current-directory=$BIN_PWD
-alias create-symbolic-link_target-file_link-name="$BIN_LN -s"
-alias show-directories="$BIN_LS -ld"
-alias show-all-files="$BIN_LS -alh"
-alias make-directory_path="$BIN_MKDIR"
-alias move-file=$BIN_MV
-alias rename-file=$BIN_MV
-alias view-symbolic-link=$BIN_READLINK
-alias delete-empty-directory=$BIN_RMDIR
-alias delete-file=$BIN_RM
-alias delete-file-FORCE="$BIN_RM -f"
-alias delete-tree="$BIN_RM -r"
-alias get-file-status=$BIN_STAT
-alias get-filesystem-status=$BIN_STAT
-alias delete-tree-FORCE="$BIN_RM -rf"
-alias show-printable-strings-in-file=$BIN_STRINGS
-alias sync-filesystem-buffers=$BIN_SYNC
-alias show-file-in-reverse=$BIN_TAC
-alias show-end-of-file=$BIN_TAIL
-alias watch-end-of-file=$BIN_TAILF
-alias get-byte-count-of-file="$BIN_WC -c"
-alias get-word-count-of-file="$BIN_WC -w"
-alias get-line-count-of-file="$BIN_WC -l"
-alias get-char-count-of-file="$BIN_WC -m"
+alias file-rename=$BIN_MV
+alias fr=file-rename
 
+alias file-copy_src_dest=$BIN_CP
+alias fcop_src_dest=file-copy_src_dest
+
+alias files-show-all="$BIN_LS -alh"
+alias fsa=files-show-all
+
+alias file-delete=$BIN_RM
+alias fd=file-delete
+
+alias file-delete-FORCE="$BIN_RM -f"
+alias fdF=file-delete-FORCE
+
+alias file-status-show=$BIN_STAT
+alias fss=file-status-show
+
+alias file-change-permissions_bitmask_file=$BIN_CHMOD
+alias fcp_bitmask_file=file-change-permissions_bitmask_file
+
+alias file-change-owner_username_file=$BIN_CHOWN
+alias fcow_username_file=file-change-owner_username_file
+
+alias file-change-group_groupname_file=$BIN_CHGRP
+alias fcg_groupname_file=file-change-group_groupname_file
+
+alias filesystem-status-show=$BIN_STAT
+alias fsss=filesystem-status-show
+
+alias file-basename-show=basename
+alias fbs=file-basename-show
+
+alias file-permissions-show="$BIN_GETFACL -a"
+alias fps=file-permissions-show
+
+alias file-byte-count-show="$BIN_WC -c"
+alias fbcs=file-byte-count-show
+
+alias file-word-count-show="$BIN_WC -w"
+alias fwcs=file-word-count-show
+
+alias file-line-count-show="$BIN_WC -l"
+alias flcs=file-line-count-show
+
+alias file-char-count-show="$BIN_WC -m"
+alias fccs=file-char-count-show
+
+alias file-reverse-show=$BIN_TAC
+alias frs=file-reverse-show
+
+alias file-printable-strings-show=$BIN_STRINGS
+alias fpss=file-printable-strings-show
+
+alias file-end-show=$BIN_TAIL
+alias fes=file-end-show
+
+alias file-watch-end=$BIN_TAILF
+alias fwe=file-watch-end
+
+alias filesystem-sync-buffers=$BIN_SYNC
+alias fssb=filesystem-sync-buffers
+
+alias dirs-show="$BIN_LS -ld"
+alias ds=dirs-show
+
+alias dir-make_path="$BIN_MKDIR"
+alias dm_path=dir-make_path
+
+alias dir-current-show=$BIN_PWD
+alias dcs=dir-current-show
+
+alias dir-delete-empty=$BIN_RMDIR
+alias dde=dir-delete-empty
+
+alias dirtree-copy_src_dest="$BIN_CP -R"
+alias dtc_src_dest=dirtree-copy_src_dest
+
+alias dirtree-delete="$BIN_RM -r"
+alias dtd=dirtree-delete
+
+alias dirtree-delete-FORCE="$BIN_RM -rf"
+alias dtdF=dirtree-delete-FORCE
+
+alias selinux-change-security-context-of-file=$BIN_CHCON
+alias selcsc=selinux-change-security-context-of-file
+
+alias symlink-create_target-file_link-name="$BIN_LN -s"
+alias slc_target-file_link-name=symlink-create_target-file_link-name
+
+alias symlink-view=$BIN_READLINK
+alias slv=symlink-view
+
+alias disk-space-show-free="$BIN_DF -h"
+alias dssf=disk-space-show-free
+
+alias disk-space-current-dir-show="$BIN_DU -h"
+alias dscds=disk-space-current-dir-show
 
 
 ### compression/encoding/decoding
-alias compress-file-bzip2_infile=$BIN_BZIP2
-alias uncompress-file-bzip2_infile="$BIN_BZIP2 -d"
-alias uncompress-and-show-file-bzip2_infile="$BIN_BZIP2 -c -d"
-
-compress-file-gzip_infile_outfile() {
+alias file-compress-bzip2_infile=$BIN_BZIP2
+alias file-uncompress-bzip2_infile="$BIN_BZIP2 -d"
+alias file-uncompress-and-show-bzip2_infile="$BIN_BZIP2 -c -d"
+file-compress-gzip_infile_outfile() {
   $BIN_GZIP -c $1 > $2
 }
+alias file-uncompress-gzip_infile="$BIN_GZIP -df"
 
-alias uncompress-file-gzip_infile="$BIN_GZIP -df"
+alias file-hash-crc-show=$BIN_CKSUM
+alias file-hash-crc32-show=$BIN_CRC32
+alias file-hash-md5-show=$BIN_MD5SUM
+alias file-hash-sha1-show=$BIN_SHA1SUM
+alias file-hash-sha256-show=$BIN_SHA256SUM
+alias file-hash-sha384-show=$BIN_SHA384SUM
+alias file-hash-sha512-show=$BIN_SHA512SUM
+alias file-encode-to-base64=$BIN_BASE64
+alias file-decode-from-base64="$BIN_BASE64 -d"
 
-alias get-hash-crc=$BIN_CKSUM
-alias get-hash-crc32=$BIN_CRC32
-alias get-hash-md5=$BIN_MD5SUM
-alias get-hash-sha1=$BIN_SHA1SUM
-alias get-hash-sha256=$BIN_SHA256SUM
-alias get-hash-sha384=$BIN_SHA384SUM
-alias get-hash-sha512=$BIN_SHA512SUM
-alias encode-file-to-base64=$BIN_BASE64
-alias decode-file-from-base64="$BIN_BASE64 -d"
+alias file-convert-line-endings-to-dos=$BIN_UNIX2DOS
+alias file-convert-line-endings-to-unix=$BIN_DOS2UNIX
+alias file-convert-tabs-to-spaces_infile_outfile=$BIN_EXPAND
+alias file-convert-spaces-to-tabs_infile_outfile=$BIN_UNEXPAND
 
-alias convert-line-endings-to-dos=$BIN_UNIX2DOS
-alias convert-line-endings-to-unix=$BIN_DOS2UNIX
-alias convert-tabs-to-spaces_infile_outfile=$BIN_EXPAND
-alias convert-spaces-to-tabs_infile_outfile=$BIN_UNEXPAND
+alias file-get-type_infile=$BIN_FILE
 
-alias get-file-type_infile=$BIN_FILE
-
-view-file-hex_offset_file() {
+file-view-hex_offset_file() {
   $BIN_HEXDUMP -C -s $1 $2 | less
 }
 
-alias show-character-encodings="$BIN_ICONV -l"
-convert-character-encoding_incoding_outcoding_infile_outfile() {
+alias char-encodings-show="$BIN_ICONV -l"
+char-encoding-convert_incoding_outcoding_infile_outfile() {
   $BIN_ICONV -f $1 -t $2 $3 > $4 
 }
 
