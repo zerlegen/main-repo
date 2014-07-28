@@ -165,35 +165,35 @@ BIN_CD=cd
 
 ## system information 
 
-alias cpu-arch-show--cas=$BIN_ARCH
-alias cas=cpu-arch-show--cas
+alias system-cpu-arch-show--scas=$BIN_ARCH
+alias scas=cpu-arch-show--scas
 
-alias date-show--das=$BIN_DATE
-alias das=date-show--das
+alias system-date-show--sdas=$BIN_DATE
+alias sdas=system-date-show--sdas
 
-alias date-set--dase_MMddhhmmYYYY=$BIN_DATE 
-alias dase=date-set--dase_MMddhhmmYYYY
+alias system-date-set--sdase_MMddhhmmYYYY=$BIN_DATE 
+alias sdase=system-date-set--sdase_MMddhhmmYYYY
 
-alias host-id-show--hids=$BIN_HOSTID
-alias hids=host-id-show--hids
+alias system-host-id-show--shids=$BIN_HOSTID
+alias shids=system-host-id-show--shids
 
-alias host-name-show--hns=$BIN_HOSTNAME
-alias hns=host-name-show--hns
+alias system-host-name-show--shns=$BIN_HOSTNAME
+alias shns=system-host-name-show--shns
 
-alias ipc-status-show--iss=$BIN_IPCS
-alias iss=ipc-status-show--iss
-
-alias user-default-locale-show--udls_user="$BIN_LOCALE -u"
-alias udls=user-default-locale-show--udls_user
+alias system-ipc-status-show--siss=$BIN_IPCS
+alias siss=system-ipc-status-show--siss
 
 alias system-default-locale-show--sdls="$BIN_LOCALE -s"
 alias sdls=system-default-locale-show--sdls
 
-alias env-variables-show--evs="$BIN_PRINTENV"
-alias evs=env-variables-show--evs
+alias system-env-variables-show--sevs="$BIN_PRINTENV"
+alias sevs=system-env-variables-show--sevs
 
-alias platform-info-show--pis="$BIN_UNAME -a"
-alias pis=platform-info-show--pis
+alias system-platform-info-show--spis="$BIN_UNAME -a"
+alias spis=system-platform-info-show--spis
+
+alias system-os-show--soss="echo $OSTYPE"
+alias soss=system-os-show--soss
 
 
 
@@ -500,6 +500,9 @@ selinux-get-security-context-of-user--selgscou_user() {
   $BIN_ID -Z $1
 }
 alias selgscou=selinux-get-security-context-of-user--selgscou_user
+
+alias user-default-locale-show--udls_user="$BIN_LOCALE -u"
+alias udls=user-default-locale-show--udls_user
 
 
 ## misc commands
