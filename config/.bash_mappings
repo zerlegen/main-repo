@@ -279,8 +279,8 @@ alias fwe=file-watch-end--fwe
 alias filesystem-sync-buffers--fssb=$BIN_SYNC
 alias fssb=filesystem-sync-buffers--fssb
 
-alias dirs-show--ds="$BIN_LS -ld"
-alias ds=dirs-show--ds
+alias dirs-show--dsh="$BIN_LS -ld"
+alias dsh=dirs-show--dsh
 
 alias dir-make_path--dm="$BIN_MKDIR"
 alias dm=dir-make_path--dm
@@ -293,6 +293,12 @@ alias dde=dir-delete-empty--dde
 
 alias dir-change--dch=$BIN_CD
 alias dch=dir-change--dch
+
+alias dir-save--dsv_path=pushd
+alias dsv=dir-save--dsv_path
+
+alias dir-go-to-last-saved--dgtls=popd
+alias dgtls=dir-go-to-last-saved--dgtls
 
 alias dirtree-copy_src_dest--dtc="$BIN_CP -R"
 alias dtc=dirtree-copy_src_dest--dtc
@@ -318,6 +324,11 @@ alias dssf=disk-space-show-free--dssf
 alias disk-space-current-dir-show--dscds="$BIN_DU -h"
 alias dscds=disk-space-current-dir-show--dscds
 
+alias file-view-by-page--fvbp=$BIN_LESS
+alias fvbp=file-view-by-page--fvbp
+
+alias file-sort-lines--fsl_file="$BIN_SORT"
+alias fsl=file-sort-lines--fsl_file
 
 ### compression/encoding/decoding
 alias file-compress-bzip2--fcb_infile=$BIN_BZIP2
@@ -414,32 +425,32 @@ alias mfi=math-factor-integer--mfi_int
 
 
 ## programming 
-alias prog-c-complier--pcc=$BIN_GCC
-alias pcc=prog-c-compiler--pcc
+alias prog-c-compiler--prcc=$BIN_GCC
+alias prcc=prog-c-compiler--prcc
 
-alias prog-awk--paw=$BIN_AWK
-alias paw=prog-awk--paw
+alias prog-awk--praw=$BIN_AWK
+alias praw=prog-awk--praw
 
-alias prog-gnu-assembler--pga=$BIN_AS
-alias pga=prog-gnu-assembler--pga
+alias prog-gnu-assembler--prga=$BIN_AS
+alias prga=prog-gnu-assembler--prga
 
-alias prog-cpp-compiler--pcppc="$BIN_GPP"
-alias pcppc=prog-cpp-compiler--pcppc
+alias prog-cpp-compiler--prcppc="$BIN_GPP"
+alias prcppc=prog-cpp-compiler--prcppc
 
-alias prog-gnu-debugger--pgdb=$BIN_GDB
-alias pgdb=prog-gun-debugger--pgdb
+alias prog-gnu-debugger--prgdb=$BIN_GDB
+alias prgdb=prog-gun-debugger--prgdb
 
-alias prog-gnu-linker--pgl=$BIN_LD
-alias pgl=prog-gnu-linker--pgl
+alias prog-gnu-linker--prgl=$BIN_LD
+alias prgl=prog-gnu-linker--prgl
 
-alias prog-show-lib-dependencies--psld_exe-or-lib=$BIN_LDD
-alias psld=prog-show-lib-dependencies--psld_exe-or-lib
+alias prog-show-lib-dependencies--prsld_exe-or-lib=$BIN_LDD
+alias prsld=prog-show-lib-dependencies--prsld_exe-or-lib
 
-alias prog-gnu-make--pgm=$BIN_MAKE
-alias pgm=prog-gnu-make--pgm
+alias prog-gnu-make--prgm=$BIN_MAKE
+alias prgm=prog-gnu-make--prgm
 
-alias prog-show-binary-section-sizes--psbss_binary=$BIN_SIZE
-alias psbss=prog-show-binary-section-sizes--psbss_binary
+alias prog-show-binary-section-sizes--prsbss_binary=$BIN_SIZE
+alias prsbss=prog-show-binary-section-sizes--prsbss_binary
 
 
 ## processes
@@ -451,40 +462,58 @@ alias sigsn=signal-send--sigs_signal_process
 alias signals-show--sigsh="$BIN_KILL -l"
 alias sigsh=signals-show--sigsh
 
-change-process-priority_priority_process-id() {
+process-change-priority--pscp_priority_process-id() {
   $BIN_RENICE -n $1 $2 
 }
+alias pscp=process-change-priority--pscp_priority_process-id
+
+alias process-run-with-timeout--psrwt_timeout-sec_command=$BIN_TIMEOUT
+alias psrwt=process-run-with-timeout--psrwt
+
 
 
 ## security
 
-get-random-data_dest_blocksize_blockcount() {
+sec-get-random-data--scgrd_dest_blocksize_blockcount() {
   $BIN_DD if=/dev/random of=$1 bs=$2 count=$3
 }
+alias scgrd=sec-get-random-data--scgrd_dest_blocksize_blockcount
 
-get-pseudo-random-data_dest_blocksize_blockcount() {
+
+sec-get-pseudo-random-data--scgprd_dest_blocksize_blockcount() {
   $BIN_DD if=/dev/urandom of=$1 bs=$2 count=$3
 }
+alias scgprd=sec-get-pseudo-random-data--scgprd_dest_blocksize_blockcount
 
 ## user accounts
 
-alias get-groups-for-user_user=$BIN_GROUPS
+alias user-get-groups--ugg=$BIN_GROUPS
+alias ugg=user-get-groups--ugg
 
 
-get-current-user-ids_user() {
+user-get-current-ids--ugci_user() {
   $BIN_ID $1
 }
+alias ugci=user-get-current-ids--ugci_user
 
-get-selinux-security-context-of-user_user() {
+selinux-get-security-context-of-user--selgscou_user() {
   $BIN_ID -Z $1
 }
+alias selgscou=selinux-get-security-context-of-user--selgscou_user
+
 
 ## misc commands
 
-alias show-calendar=$BIN_CAL
-alias view-file-by-page=$BIN_LESS
-alias view-file-elf="$BIN_READELF -a"
-alias sort-file-lines_file="$BIN_SORT"
-alias run-with-timeout=$BIN_TIMEOUT
-alias generate-uuid=$BIN_UUIDGEN
-alias print-until-killed_string=$BIN_YES
+alias calendar-show--cals=$BIN_CAL
+alias cals=calendar-show--cals
+
+alias uuid-generate--uug=$BIN_UUIDGEN
+alias uug=uuid-generate--uug
+
+alias print-until-killed--puk_string=$BIN_YES
+alias puk=print-until-killed--puk_string
+
+alias binary-view-elf--bve="$BIN_READELF -a"
+alias bve=binary-view-elf--bve
+
+
