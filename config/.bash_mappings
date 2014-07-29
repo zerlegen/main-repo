@@ -1,162 +1,158 @@
 
 #-------------------------------------------------------------------------------- 
-# CYGWIN BINARIES
+# BINARIES
 
 ## binary locations
 
 ### hardware
 
-BIN_ARCH=/usr/bin/arch
-BIN_AS=/usr/bin/as
+BIN_ARCH=arch
+BIN_AS=as
 
 ### programming/languages
 
-BIN_AWK=/usr/bin/awk
-BIN_GCC=/usr/bin/gcc
+BIN_AWK=awk
+BIN_GCC=gcc
 
 ### file binaries
 
-BIN_BZIP2=/usr/bin/bzip2
-BIN_DOS2UNIX=/usr/bin/dos2unix
-BIN_UNIX2DOS=/usr/bin/unix2dos
+BIN_BZIP2=bzip2
+BIN_DOS2UNIX=dos2unix
+BIN_UNIX2DOS=unix2dos
 
-BIN_CP=/usr/bin/cp
+BIN_CP=cp
 
 ### misc binaries
 
-BIN_BASE64=/usr/bin/base64
-BIN_BASENAME=/usr/bin/basename
+BIN_BASE64=base64
+BIN_BASENAME=basename
 
 
-BIN_CAL=/usr/bin/cal
+BIN_CAL=cal
 
-BIN_CHCON=/usr/bin/chcon
-BIN_CHMOD=/usr/bin/chmod
-BIN_CHOWN=/usr/bin/chown
-BIN_CHGRP=/usr/bin/chgrp
+BIN_CHCON=chcon
+BIN_CHMOD=chmod
+BIN_CHOWN=chown
+BIN_CHGRP=chgrp
 
-BIN_CKSUM=/usr/bin/cksum
-BIN_CRC32=/usr/bin/crc32
-BIN_MD5SUM=/usr/bin/md5sum
-BIN_SHA1SUM=/usr/bin/sha1sum
-BIN_SHA256SUM=/usr/bin/sha256sum
-BIN_SHA384SUM=/usr/bin/sha384sum
-BIN_SHA512SUM=/usr/bin/sha512sum
+BIN_CKSUM=cksum
+BIN_CRC32=crc32
+BIN_MD5SUM=md5sum
+BIN_SHA1SUM=sha1sum
+BIN_SHA256SUM=sha256sum
+BIN_SHA384SUM=sha384sum
+BIN_SHA512SUM=sha512sum
 
-BIN_CURL=/usr/bin/curl
+BIN_CURL=curl
 
-BIN_DATE=/usr/bin/date
+BIN_DATE=date
 
-BIN_DD=/usr/bin/dd
-BIN_DF=/usr/bin/df
-BIN_DU=/usr/bin/du
-BIN_EXPAND=/usr/bin/expand
-BIN_FACTOR=/usr/bin/factor
-BIN_FILE=/usr/bin/file
-BIN_FIND=/usr/bin/find
-BIN_FTP=/usr/bin/ftp
+BIN_DD=dd
+BIN_DF=df
+BIN_DU=du
+BIN_EXPAND=expand
+BIN_FACTOR=factor
+BIN_FILE=file
+BIN_FIND=find
+BIN_FTP=ftp
 
-BIN_GPP="/usr/bin/g++"
-BIN_GDB=/usr/bin/gdb
-BIN_GETFACL=/usr/bin/getfacl
-BIN_KILL="/usr/bin/kill.exe"
-BIN_GPG=/usr/bin/gpg
-BIN_GPGSPLIT=/usr/bin/gpgsplit
-BIN_GPGV=/usr/bin/gpgv
-BIN_GPGZIP=/usr/bin/gpg-zip
-BIN_GREP=/usr/bin/grep
-BIN_GZIP=/usr/bin/gzip
+BIN_GPP="g++"
+BIN_GDB=gdb
+BIN_GETFACL=getfacl
+BIN_KILL="kill.exe"
+BIN_GPG=gpg
+BIN_GPGSPLIT=gpgsplit
+BIN_GPGV=gpgv
+BIN_GPGZIP=gpg-zip
+BIN_GREP=grep
+BIN_GZIP=gzip
 
-BIN_GROUPS=/usr/bin/groups
-BIN_HEXDUMP=/usr/bin/hexdump
-BIN_HOSTID=/usr/bin/hostid
-BIN_HOSTNAME=/usr/bin/hostname
+BIN_GROUPS=groups
+BIN_HEXDUMP=hexdump
+BIN_HOSTID=hostid
+BIN_HOSTNAME=hostname
 
-BIN_ICONV=/usr/bin/iconv
-BIN_ID=/usr/bin/id
-BIN_IPCS=/usr/bin/ipcs
-BIN_LD=/usr/bin/ld
+BIN_ICONV=iconv
+BIN_ID=id
+BIN_IPCS=ipcs
+BIN_LD=ld
 
-BIN_LDAPADD=/usr/bin/ldapadd
-BIN_LDAPCOMPARE=/usr/bin/ldapcompare
-BIN_LDAPDELETE=/usr/bin/ldapdelete
-BIN_LDAPMODIFY=/usr/bin/ldapmodify
-BIN_LDAPMODRDN=/usr/bin/ldapmodrdn
-BIN_LDAPPASSWD=/usr/bin/ldappasswd
-BIN_LDAPSEARCH=/usr/bin/ldapsearch
-BIN_LDAPURL=/usr/bin/ldapurl
-BIN_LDAPWHOAMI=/usr/bin/ldapwhoami
+BIN_LDAPADD=ldapadd
+BIN_LDAPCOMPARE=ldapcompare
+BIN_LDAPDELETE=ldapdelete
+BIN_LDAPMODIFY=ldapmodify
+BIN_LDAPMODRDN=ldapmodrdn
+BIN_LDAPPASSWD=ldappasswd
+BIN_LDAPSEARCH=ldapsearch
+BIN_LDAPURL=ldapurl
+BIN_LDAPWHOAMI=ldapwhoami
 
-BIN_LDD=/usr/bin/ldd
-BIN_LESS=/usr/bin/less
-BIN_LN=/usr/bin/ln
-BIN_LOCALE=/usr/bin/locale
-BIN_LOGGER=/usr/bin/logger
-BIN_LS=/usr/bin/ls
-BIN_MAKE=/usr/bin/make
-BIN_MKDIR=/usr/bin/mkdir
-BIN_MV=/usr/bin/mv
-BIN_OBJDUMP=/usr/bin/objdump
-BIN_OPENSSL=/usr/bin/openssl
-BIN_PRINTENV=/usr/bin/printenv
-BIN_PS=/usr/bin/ps
-BIN_PWD=/usr/bin/pwd
-BIN_READELF=/usr/bin/readelf
-BIN_READLINK=/usr/bin/readlink
-BIN_RENICE=/usr/bin/renice
-BIN_RMDIR=/usr/bin/rmdir
-BIN_RM=/usr/bin/rm
-BIN_RSYNC=/usr/bin/rsync
+BIN_LDD=ldd
+BIN_LESS=less
+BIN_LN=ln
+BIN_LOCALE=locale
+BIN_LOGGER=logger
+BIN_LS=ls
+BIN_MAKE=make
+BIN_MKDIR=mkdir
+BIN_MV=mv
+BIN_OBJDUMP=objdump
+BIN_OPENSSL=openssl
+BIN_PRINTENV=printenv
+BIN_PS=ps
+BIN_PWD=pwd
+BIN_READELF=readelf
+BIN_READLINK=readlink
+BIN_RENICE=renice
+BIN_RMDIR=rmdir
+BIN_RM=rm
+BIN_RSYNC=rsync
 
-BIN_SCP=/usr/bin/scp
-BIN_SFTP=/usr/bin/sftp
-BIN_SIZE=/usr/bin/size
-BIN_SORT=/usr/bin/sort
-BIN_SSH=/usr/bin/ssh
-BIN_SSH_KEYGEN=/usr/bin/ssh-keygen
-BIN_STAT=/usr/bin/stat
-BIN_STRINGS=/usr/bin/strings
-BIN_STUNNEL=/usr/bin/stunnel
-BIN_SYNC=/usr/bin/sync
-BIN_TAC=/usr/bin/tac
-BIN_TAIL=/usr/bin/tail
-BIN_TAILF=/usr/bin/tailf
-BIN_TAR=/usr/bin/tar
-BIN_TEE=/usr/bin/tee
-BIN_TELNET=/usr/bin/telnet
-BIN_TIMEOUT=/usr/bin/timeout
-BIN_TOUCH=/usr/bin/touch
-BIN_UNAME=/usr/bin/uname
-BIN_UNEXPAND=/usr/bin/unexpand
-BIN_UUIDGEN=/usr/bin/uuidgen
-BIN_WC=/usr/bin/wc
-BIN_WGET=/usr/bin/wget
-BIN_YES=/usr/bin/yes
-BIN_ZIP=/usr/bin/zip
+BIN_SCP=scp
+BIN_SFTP=sftp
+BIN_SIZE=size
+BIN_SORT=sort
+BIN_SSH=ssh
+BIN_SSH_KEYGEN=ssh-keygen
+BIN_STAT=stat
+BIN_STRINGS=strings
+BIN_STUNNEL=stunnel
+BIN_SYNC=sync
+BIN_TAC=tac
+BIN_TAIL=tail
+BIN_TAILF=tailf
+BIN_TAR=tar
+BIN_TEE=tee
+BIN_TELNET=telnet
+BIN_TIMEOUT=timeout
+BIN_TOUCH=touch
+BIN_UNAME=uname
+BIN_UNEXPAND=unexpand
+BIN_UUIDGEN=uuidgen
+BIN_WC=wc
+BIN_WGET=wget
+BIN_YES=yes
+BIN_ZIP=zip
 
 
-BIN_FDISK=/usr/sbin/fdisk
-BIN_FINDFS=/usr/sbin/findfs
-BIN_FSCK=/usr/sbin/fsck
-BIN_FTPD=/usr/sbin/ftpd
-BIN_MKFS=/usr/sbin/mkfs
-BIN_MKSWAP=/usr/sbin/mkswap
-BIN_SSHD=/usr/sbin/sshd
-BIN_SYSLOGD=/usr/sbin/syslogd
+BIN_FDISK=fdisk
+BIN_FINDFS=findfs
+BIN_FSCK=fsck
+BIN_FTPD=ftpd
+BIN_MKFS=mkfs
+BIN_MKSWAP=mkswap
+BIN_SSHD=sshd
+BIN_SYSLOGD=syslogd
 
 BIN_CD=cd
 
-#------------------------------------------------------------------------------- 
-# RED HAT FAMILY
-
-
-#-------------------------------------------------------------------------------- 
-# UBUNTU
-
-
-#-------------------------------------------------------------------------------- 
-# MAC OS X
-
+BIN_CURL=curl
+BIN_PING=ping
+BIN_TRACEROUTE=traceroute
+BIN_DIG=dig
+BIN_NSLOOKUP=nslookup
+BIN_TELNET=telnet
+BIN_NETSTAT=netstat
 
 #-------------------------------------------------------------------------------- 
 #-------------------------------------------------------------------------------- 
@@ -231,17 +227,17 @@ alias fd=file-delete
 alias file-delete-FORCE="$BIN_RM -f"
 alias fdF=file-delete-FORCE
 
-alias file-status-show=$BIN_STAT
-alias fss=file-status-show
+alias file-status-show--fss=$BIN_STAT
+alias fss=file-status-show--fss
 
 alias file-change-permissions--fcp_bitmask_file=$BIN_CHMOD
 alias fcp=file-change-permissions--fcp_bitmask_file
 
-alias file-change-owner--fchown_username_file=$BIN_CHOWN
-alias fchown=file-change-owner--fchown_username_file
+alias file-change-owner--fco_username_file=$BIN_CHOWN
+alias fco=file-change-owner--fco_username_file
 
-alias file-change-group--fcgr_groupname_file=$BIN_CHGRP
-alias fcgr=file-change-group--fcgr_groupname_file
+alias file-change-group--fcg_groupname_file=$BIN_CHGRP
+alias fcg=file-change-group--fcg_groupname_file
 
 alias filesystem-status-show--fsss_path=$BIN_STAT
 alias fsss=filesystem-status-show--fsss_path
@@ -418,6 +414,18 @@ alias ncts=network-copy-tree-secure--ncts_local-str_remote-str
 
 alias network-download--nd="$BIN_WGET"
 alias nd=network-download--nd
+
+alias network-check-host-reachable--nchr_host=$BIN_PING
+alias nchr=network-check-host-reachable--nchr_host
+
+alias network-check-port-reachable--ncpr_host_port=$BIN_TELNET
+alias ncpr=network-check-port-reachable--ncpr_host_port
+
+alias network-dns-records-get--ndrg_domain="$BIN_DIG -t ANY +noall +answer"
+alias ndrg=network-dns-records-get--ndrg_domain
+
+alias network-trace-hops--nth_dest=$BIN_TRACEROUTE
+alias nth=network-trace-hops--nth_dest
 
 ## math
 alias math-factor-integer--mfi_int=$BIN_FACTOR
