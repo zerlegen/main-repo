@@ -205,3 +205,5 @@ REPO_HOME=/home/epom/test-repo
 
 #export PYTHONPATH=$PYTHONPATH:$REPO_HOME/pyXmind
 #export PYTHONPATH=$PYTHONPATH:$REPO_HOME/filename_analyzer
+
+source ".bash_mappings"

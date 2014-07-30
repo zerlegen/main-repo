@@ -1,0 +1,20 @@
+
+## user accounts
+
+alias user-get-groups--ugg=$BIN_GROUPS
+alias ugg=user-get-groups--ugg
+
+
+user-get-current-ids--ugci_user() {
+  $BIN_ID $1
+}
+alias ugci=user-get-current-ids--ugci_user
+
+selinux-get-security-context-of-user--selgscou_user() {
+  $BIN_ID -Z $1
+}
+alias selgscou=selinux-get-security-context-of-user--selgscou_user
+
+alias user-default-locale-show--udls_user="$BIN_LOCALE -u"
+alias udls=user-default-locale-show--udls_user
+

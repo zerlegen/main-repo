@@ -1,0 +1,18 @@
+
+## processes
+signal-send--sigs_signal_process() {
+  $BIN_KILL -$1 $2
+}
+alias sigsn=signal-send--sigs_signal_process
+
+alias signals-show--sigsh="$BIN_KILL -l"
+alias sigsh=signals-show--sigsh
+
+process-change-priority--pscp_priority_process-id() {
+  $BIN_RENICE -n $1 $2 
+}
+alias pscp=process-change-priority--pscp_priority_process-id
+
+alias process-run-with-timeout--psrwt_timeout-sec_command=$BIN_TIMEOUT
+alias psrwt=process-run-with-timeout--psrwt
+

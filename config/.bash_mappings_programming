@@ -1,0 +1,28 @@
+## programming 
+alias prog-c-compiler--prcc=$BIN_GCC
+alias prcc=prog-c-compiler--prcc
+
+alias prog-awk--praw=$BIN_AWK
+alias praw=prog-awk--praw
+
+alias prog-gnu-assembler--prga=$BIN_AS
+alias prga=prog-gnu-assembler--prga
+
+alias prog-cpp-compiler--prcppc="$BIN_GPP"
+alias prcppc=prog-cpp-compiler--prcppc
+
+alias prog-gnu-debugger--prgdb=$BIN_GDB
+alias prgdb=prog-gun-debugger--prgdb
+
+alias prog-gnu-linker--prgl=$BIN_LD
+alias prgl=prog-gnu-linker--prgl
+
+alias prog-show-lib-dependencies--prsld_exe-or-lib=$BIN_LDD
+alias prsld=prog-show-lib-dependencies--prsld_exe-or-lib
+
+alias prog-gnu-make--prgm=$BIN_MAKE
+alias prgm=prog-gnu-make--prgm
+
+alias prog-show-binary-section-sizes--prsbss_binary=$BIN_SIZE
+alias prsbss=prog-show-binary-section-sizes--prsbss_binary
+

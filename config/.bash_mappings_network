@@ -1,0 +1,27 @@
+
+## network 
+alias network-ftp-start--nfs=$BIN_FTP
+alias nfs=network-ftp-start--nfs
+
+network-copy-tree-secure--ncts_local-str_remote-str() {
+  $BIN_SCP -r $1 $2
+}
+alias ncts=network-copy-tree-secure--ncts_local-str_remote-str
+
+
+alias network-download--nd="$BIN_WGET"
+alias nd=network-download--nd
+
+alias network-check-host-reachable--nchr_host=$BIN_PING
+alias nchr=network-check-host-reachable--nchr_host
+
+alias network-check-port-reachable--ncpr_host_port=$BIN_TELNET
+alias ncpr=network-check-port-reachable--ncpr_host_port
+
+alias network-dns-records-get--ndrg_domain="$BIN_DIG -t ANY +noall +answer"
+alias ndrg=network-dns-records-get--ndrg_domain
+
+alias network-trace-hops--nth_dest=$BIN_TRACEROUTE
+alias nth=network-trace-hops--nth_dest
+
+

@@ -1,0 +1,32 @@
+## system information 
+
+alias system-cpu-arch-show--scas=$BIN_ARCH
+alias scas=cpu-arch-show--scas
+
+alias system-date-show--sdas=$BIN_DATE
+alias sdas=system-date-show--sdas
+
+alias system-date-set--sdase_MMddhhmmYYYY=$BIN_DATE 
+alias sdase=system-date-set--sdase_MMddhhmmYYYY
+
+alias system-host-id-show--shids=$BIN_HOSTID
+alias shids=system-host-id-show--shids
+
+alias system-host-name-show--shns=$BIN_HOSTNAME
+alias shns=system-host-name-show--shns
+
+alias system-ipc-status-show--siss=$BIN_IPCS
+alias siss=system-ipc-status-show--siss
+
+alias system-default-locale-show--sdls="$BIN_LOCALE -s"
+alias sdls=system-default-locale-show--sdls
+
+alias system-env-variables-show--sevs="$BIN_PRINTENV"
+alias sevs=system-env-variables-show--sevs
+
+alias system-platform-info-show--spis="$BIN_UNAME -a"
+alias spis=system-platform-info-show--spis
+
+alias system-os-show--soss="echo $OSTYPE"
+alias soss=system-os-show--soss
+

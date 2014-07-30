@@ -1,0 +1,58 @@
+### compression/encoding/decoding
+alias file-compress-bzip2--fcb_infile=$BIN_BZIP2
+alias fcb=file-compress-bzip2--fcb_infile
+
+alias file-uncompress-bzip2--fub_infile="$BIN_BZIP2 -d"
+alias fub=file-uncompress-bzip2--fub_infile
+
+alias file-uncompress-and-show-bzip2--fusb_infile="$BIN_BZIP2 -c -d"
+alias fusb=file-uncompress-and-show-bzip2--fusb_infile
+
+file-compress-gzip--fcgz_infile_outfile() {
+  $BIN_GZIP -c $1 > $2
+}
+alias fcgz=file-compress-gzip--fcgz_infile_outfile
+
+alias file-uncompress-gzip_infile--fugz="$BIN_GZIP -df"
+alias fugz=file-uncompress-gzip_infile--fugz
+
+alias file-hash-crc-show--fhcs=$BIN_CKSUM
+alias fhcs=file-hash-crc-show--fhcs
+
+alias file-hash-crc32-show--fhc32s=$BIN_CRC32
+alias fhc32s=file-hash-crc32-show--fhc32s
+
+alias file-hash-md5-show--fhms=$BIN_MD5SUM
+alias fhms=file-hash-md5-show--fhms
+
+alias file-hash-sha1-show--fhs1s=$BIN_SHA1SUM
+alias fhs1s=file-hash-sha1-show--fhs1s
+
+alias file-hash-sha256-show--fhs2s=$BIN_SHA256SUM
+alias fhs2s=file-hash-sha256-show--fhs2s
+
+alias file-hash-sha384-show--fhs3s=$BIN_SHA384SUM
+alias fhs3s=file-hash-sha384-show--fhs3s
+
+alias file-hash-sha512-show--fhs5s=$BIN_SHA512SUM
+alias fhs5s=file-hash-sha512-show--fhs5s
+
+alias file-encode-to-base64--fetb64=$BIN_BASE64
+alias fetb64=file-encode-to-base64--fetb64
+
+alias file-decode-from-base64--fdfb64="$BIN_BASE64 -d"
+alias fdfb64=file-decode-from-base64--fdfb64
+
+alias file-convert-line-endings-to-dos--fcletd=$BIN_UNIX2DOS
+alias fcletd=file-convert-line-endings-to-dos--fcletd
+
+alias file-convert-line-endings-to-unix--fcletu=$BIN_DOS2UNIX
+alias fcletu=file-convert-line-endings-to-unix--fcletu
+
+alias file-convert-tabs-to-spaces--fctts_infile_outfile=$BIN_EXPAND
+alias fctts=file-convert-tabs-to-spaces--fctts_infile_outfile
+
+alias file-convert-spaces-to-tabs--fcstt_infile_outfile=$BIN_UNEXPAND
+alias fcstt=file-convert-spaces-to-tabs--fcstt_infile_outfile
+
+

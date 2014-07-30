@@ -1,0 +1,15 @@
+## misc commands
+
+alias calendar-show--cals=$BIN_CAL
+alias cals=calendar-show--cals
+
+alias uuid-generate--uug=$BIN_UUIDGEN
+alias uug=uuid-generate--uug
+
+alias print-until-killed--puk_string=$BIN_YES
+alias puk=print-until-killed--puk_string
+
+alias binary-view-elf--bve="$BIN_READELF -a"
+alias bve=binary-view-elf--bve
+
+

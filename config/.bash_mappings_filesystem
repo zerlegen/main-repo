@@ -1,0 +1,135 @@
+
+## filesystem 
+alias file-move--fm=$BIN_MV
+alias fm=file-move--fm
+
+alias file-rename--fr=$BIN_MV
+alias fr=file-rename--fr
+
+alias file-copy--fcop_src_dest=$BIN_CP
+alias fcop=file-copy--fcop_src_dest
+
+alias files-show-all--fsa="$BIN_LS"
+alias fsa=files-show-all--fsa
+
+alias file-show-meta--fsm_file="$BIN_LS -alh"
+alias fsm=file-show-meta--fsm_file
+
+alias files-show-all-meta--fsam="$BIN_LS -alh"
+alias fsam=files-show-all-meta--fsam
+
+alias file-delete=$BIN_RM
+alias fd=file-delete
+
+alias file-delete-FORCE="$BIN_RM -f"
+alias fdF=file-delete-FORCE
+
+alias file-status-show--fss=$BIN_STAT
+alias fss=file-status-show--fss
+
+alias file-change-permissions--fcp_bitmask_file=$BIN_CHMOD
+alias fcp=file-change-permissions--fcp_bitmask_file
+
+alias file-change-owner--fco_username_file=$BIN_CHOWN
+alias fco=file-change-owner--fco_username_file
+
+alias file-change-group--fcg_groupname_file=$BIN_CHGRP
+alias fcg=file-change-group--fcg_groupname_file
+
+alias filesystem-status-show--fsss_path=$BIN_STAT
+alias fsss=filesystem-status-show--fsss_path
+
+alias file-basename-show--fbs=basename
+alias fbs=file-basename-show--fbs
+
+alias file-permissions-show--fps="$BIN_GETFACL -a"
+alias fps=file-permissions-show--fps
+
+alias file-byte-count-show--fbcs="$BIN_WC -c"
+alias fbcs=file-byte-count-show--fbcs
+
+alias file-word-count-show--fwcs="$BIN_WC -w"
+alias fwcs=file-word-count-show--fwcs
+
+alias file-line-count-show--flcs="$BIN_WC -l"
+alias flcs=file-line-count-show--flcs
+
+alias file-char-count-show--fccs="$BIN_WC -m"
+alias fccs=file-char-count-show--fccs
+
+alias file-reverse-lines-show--frls=$BIN_TAC
+alias frls=file-reverse-lines-show--frls
+
+alias file-printable-strings-show--fpss=$BIN_STRINGS
+alias fpss=file-printable-strings-show--fpss
+
+alias file-end-show--fes=$BIN_TAIL
+alias fes=file-end-show--fes
+
+alias file-watch-end--fwe=$BIN_TAILF
+alias fwe=file-watch-end--fwe
+
+alias filesystem-sync-buffers--fssb=$BIN_SYNC
+alias fssb=filesystem-sync-buffers--fssb
+
+alias dirs-show--dsh="$BIN_LS -ld"
+alias dsh=dirs-show--dsh
+
+alias dir-make_path--dm="$BIN_MKDIR"
+alias dm=dir-make_path--dm
+
+alias dir-current-show--dcs=$BIN_PWD
+alias dcs=dir-current-show--dcs
+
+alias dir-delete-empty--dde=$BIN_RMDIR
+alias dde=dir-delete-empty--dde
+
+alias dir-change--dch=$BIN_CD
+alias dch=dir-change--dch
+
+alias dir-save--dsv_path=pushd
+alias dsv=dir-save--dsv_path
+
+alias dir-go-to-last-saved--dgtls=popd
+alias dgtls=dir-go-to-last-saved--dgtls
+
+alias dirtree-copy_src_dest--dtc="$BIN_CP -R"
+alias dtc=dirtree-copy_src_dest--dtc
+
+alias dirtree-delete--dtd="$BIN_RM -r"
+alias dtd=dirtree-delete--dtd
+
+alias dirtree-delete-FORCE--dtdF="$BIN_RM -rf"
+alias dtdF=dirtree-delete-FORCE--dtdF
+
+alias selinux-change-security-context--selcsc_file=$BIN_CHCON
+alias selcsc=selinux-change-security-context--selcsc_file
+
+alias symlink-create_target-file_link-name--slc="$BIN_LN -s"
+alias slc=symlink-create_target-file_link-name--slc
+
+alias symlink-view--slv=$BIN_READLINK
+alias slv=symlink-view--slv
+
+alias disk-space-show-free--dssf="$BIN_DF -h"
+alias dssf=disk-space-show-free--dssf
+
+alias disk-space-current-dir-show--dscds="$BIN_DU -h"
+alias dscds=disk-space-current-dir-show--dscds
+
+alias file-view-by-page--fvbp=$BIN_LESS
+alias fvbp=file-view-by-page--fvbp
+
+alias file-sort-lines--fsl_file="$BIN_SORT"
+alias fsl=file-sort-lines--fsl_file
+
+alias file-get-type--fgt_infile=$BIN_FILE
+alias fgt=file-get-type--fgt_infile 
+
+file-view-hex--fvh_offset_file() {
+  $BIN_HEXDUMP -C -s $1 $2 | less
+}
+alias fvh=file-view-hex--fvh_offset_file
+
+
+
