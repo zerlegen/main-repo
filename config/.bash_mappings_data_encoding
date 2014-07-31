@@ -16,6 +16,11 @@ alias fcgz=file-compress-gzip--fcgz_infile_outfile
 alias file-uncompress-gzip_infile--fugz="$BIN_GZIP -df"
 alias fugz=file-uncompress-gzip_infile--fugz
 
+file-compress-tarball--fct_inpath_outfile() {
+  tar -czvf $2 $1
+}
+alias fct=file-compress-tarball--fct_inpath_outfile
+
 alias file-hash-crc-show--fhcs=$BIN_CKSUM
 alias fhcs=file-hash-crc-show--fhcs
 
@@ -54,5 +59,6 @@ alias fctts=file-convert-tabs-to-spaces--fctts_infile_outfile
 
 alias file-convert-spaces-to-tabs--fcstt_infile_outfile=$BIN_UNEXPAND
 alias fcstt=file-convert-spaces-to-tabs--fcstt_infile_outfile
+
 
 

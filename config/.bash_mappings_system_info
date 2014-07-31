@@ -30,3 +30,9 @@ alias spis=system-platform-info-show--spis
 alias system-os-show--soss="echo $OSTYPE"
 alias soss=system-os-show--soss
 
+alias system-disk-space-show-free--sdssf="$BIN_DF -h"
+alias sdssf=system-disk-space-show-free--sdssf
+
+alias system-disk-space-current-dir-show--sdscds="$BIN_DU -h"
+alias sdscds=system-disk-space-current-dir-show--sdscds
+

@@ -19,5 +19,6 @@ alias scpcssc=sec-pki-create-self-signed-cert--scpcssc_days-valid_keysize_key-ou
 sec-pki-cert-decode-pem--scpcdp_in-file() {
   openssl x509 -inform PEM -in $1 -noout -text
 }
-
 alias scpcdp=sec-pki-cert-decode-pem--scpcdp_in-file
+
+

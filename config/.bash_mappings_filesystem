@@ -111,12 +111,6 @@ alias slc=symlink-create_target-file_link-name--slc
 alias symlink-view--slv=$BIN_READLINK
 alias slv=symlink-view--slv
 
-alias disk-space-show-free--dssf="$BIN_DF -h"
-alias dssf=disk-space-show-free--dssf
-
-alias disk-space-current-dir-show--dscds="$BIN_DU -h"
-alias dscds=disk-space-current-dir-show--dscds
-
 alias file-view-by-page--fvbp=$BIN_LESS
 alias fvbp=file-view-by-page--fvbp
 
