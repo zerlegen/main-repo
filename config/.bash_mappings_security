@@ -16,9 +16,23 @@ sec-pki-create-self-signed-cert--scpcssc_days-valid_keysize_key-out-file_cert-ou
 }
 alias scpcssc=sec-pki-create-self-signed-cert--scpcssc_days-valid_keysize_key-out-file_cert-out-file
 
-sec-pki-cert-decode-pem--scpcdp_in-file() {
+sec-pki-cert-decode-pem--spcdp_in-file() {
   openssl x509 -inform PEM -in $1 -noout -text
 }
-alias scpcdp=sec-pki-cert-decode-pem--scpcdp_in-file
+alias spcdp=sec-pki-cert-decode-pem--spcdp_in-file
 
+sec-pki-cert-decode-der--scpcdp_in-file() {
+  openssl x509 -inform DER -in $1 -noout -text
+}
+alias scpcdp=sec-pki-cert-decode-der--scpcdp_in-file
 
+sec-pki-create-cert-req--spccr_keysize_keyout_reqout() {
+  openssl req -new -newkey rsa:$1 -keyout $2 -nodes -out $3
+}
+alias spccr=sec-pki-create-cert-req--spccr_keysize_keyout_reqout
+
+sec-pki-gen-rsa-key-clear--spgrkc_keysize_keyout() {
+  openssl req -x509 -nodes -days 365 -newkey rsa:$1 -keyout $2 -subj /cn=foo/dc=foo/dc=foo -out certtemp
+  rm certtemp 
+}
+spgrkc=sec-pki-gen-rsa-key-clear--spgrkc_keysize_keyout
