@@ -153,6 +153,8 @@ BIN_DIG=dig
 BIN_NSLOOKUP=nslookup
 BIN_TELNET=telnet
 BIN_NETSTAT=netstat
+BIN_CYG_IPCONFIG=/cygdrive/c/Windows/system32/ipconfig
+BIN_IFCONFIG=ifconfig
 
 #-------------------------------------------------------------------------------- 
 #-------------------------------------------------------------------------------- 

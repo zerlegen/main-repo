@@ -24,4 +24,33 @@ alias ndrg=network-dns-records-get--ndrg_domain
 alias network-trace-hops--nth_dest=$BIN_TRACEROUTE
 alias nth=network-trace-hops--nth_dest
 
+# ifconfig commands
+
+if [[ $(uname) == CYGWIN* ]]; then
+  alias network-interfaces-show="$BIN_CYG_IPCONFIG /all"
+  alias network-interfaces-release="$BIN_CYG_IPCONFIG /release"
+  alias network-interfaces-renew="$BIN_CYG_IPCONFIG /renew"
+else
+  alias network-interfaces-show="$BIN_IFCONFIG -a"
+fi
+
+# Netstat commands
+
+if [[ $(uname) == CYGWIN* ]]; then
+  alias network-connections-show-all="$BIN_NETSTAT -abn"
+  alias network-connections-show-listening-tcp="$BIN_NETSTAT -abnp TCP | grep LISTEN" 
+  alias network-connections-show-listening-udp="$BIN_NETSTAT -abnp UDP | grep LISTEN" 
+  alias network-connections-show-established-tcp="$BIN_NETSTAT -abnp TCP | grep ESTABLISHED" 
+  alias network-connections-show-established-udp="$BIN_NETSTAT -abnp UDP | grep ESTABLISHED" 
+  alias network-connections-show-ip_ip="$BIN_NETSTAT -abn | grep "
+  alias network-connections-show-stats="$BIN_NETSTAT -e"
+else
+  alias network-connections-show-all="$BIN_NETSTAT -apn"
+  alias network-connections-show-listening-tcp="$BIN_NETSTAT -apnt | grep LISTEN" 
+  alias network-connections-show-listening-udp="$BIN_NETSTAT -apnu | grep LISTEN" 
+  alias network-connections-show-established-tcp="$BIN_NETSTAT -apnt | grep ESTABLISHED" 
+  alias network-connections-show-established-udp="$BIN_NETSTAT -apnu | grep ESTABLISHED" 
+
+fi
+
 
