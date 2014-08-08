@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/epomerleau/.vim'
+let g:netrw_dirhist_2='/home/epomerleau'
+let g:netrw_dirhist_3='/cygdrive/c/shared/github/test-repo/py3/org/zerlegen/file_batch_mind_map'
+let g:netrw_dirhist_4='/home/epomerleau/.vim/nerdtree_plugin'
+let g:netrw_dirhist_5='/cygdrive/c/shared/reference/src/sentry/appliance-dump-4.7/asproxy-4.7-src/classes/com/mobileiron/alcor/http'
+let g:netrw_dirhist_6='/cygdrive/c/shared/gitlocal/byodportal/on-premise'
+let g:netrw_dirhist_7='/cygdrive/c/shared/reference/src/VSP/appliance-dump-5.7/mi/tomcat/webapps/mifs/WEB-INF'
+let g:netrw_dirhist_8='/cygdrive/c/shared/git/byodportal/byodportal/on-premise'
