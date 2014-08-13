@@ -207,4 +207,8 @@ REPO_HOME=/home/epom/test-repo
 #export PYTHONPATH=$PYTHONPATH:$REPO_HOME/pyXmind
 #export PYTHONPATH=$PYTHONPATH:$REPO_HOME/filename_analyzer
 
+#export PS1="\e[0;32m][\u@\h \W]\$ \e[m"
+#export PS1="\[\e[0;32m\]\u@\h \W\$ "
+export PS1="\[$(tput bold)$(tput setaf 6)\]\u@\h:\[$(tput setaf 2)\w$(tput sgr0)\] $ "
+
 source ".bash_mappings"
