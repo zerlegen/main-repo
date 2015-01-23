@@ -209,6 +209,6 @@ REPO_HOME=/home/epom/test-repo
 
 #export PS1="\e[0;32m][\u@\h \W]\$ \e[m"
 #export PS1="\[\e[0;32m\]\u@\h \W\$ "
-export PS1="\[$(tput bold)$(tput setaf 6)\]\u@\h:\[$(tput setaf 2)\w$(tput sgr0)\] $ "
+export PS1="\[$(tput bold)$(tput setaf 6)\]\u@\h:\[$(tput setaf 2)\w$(tput sgr0)\] > "
 
 source ".bash_mappings"
