@@ -209,6 +209,7 @@ REPO_HOME=/home/epom/test-repo
 
 #export PS1="\e[0;32m][\u@\h \W]\$ \e[m"
 #export PS1="\[\e[0;32m\]\u@\h \W\$ "
-export PS1="\[$(tput bold)$(tput setaf 6)\]\u@\h:\[$(tput setaf 2)\w$(tput sgr0)\] > "
-
+#export PS1="\[$(tput bold)$(tput setaf 6)\]\u@\h:\[$(tput setaf 2)\w$(tput sgr0)\] > "
+export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;36m\]\u@\h\[\033[01;37m\] \w \> \[\033[00m\]"
 source ".bash_mappings"
+
