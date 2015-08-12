@@ -213,4 +213,5 @@ REPO_HOME=/home/epom/test-repo
 export PS1="${debian_chroot:+($debian_chroot)}\[\033[01;36m\]\u@\h\[\033[01;37m\] \w \> \[\033[00m\]"
 source ".bash_mappings"
 alias tmux="tmux -2"
+tmux
 
